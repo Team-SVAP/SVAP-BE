@@ -25,6 +25,8 @@ public class GetPetitionService {
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
+        petition.addViewCount();
+
         return PetitionResponse.of(petition);
     }
 }

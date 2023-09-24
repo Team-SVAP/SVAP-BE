@@ -44,6 +44,8 @@ public class Petition {
 
     private int voteCounts;
 
+    private int viewCounts;
+
     @Convert(converter = StringListConverter.class)
     private List<String> imgList = new ArrayList<>();
 
@@ -58,6 +60,9 @@ public class Petition {
         this.location = location;
     }
 
+    public void addViewCount() {
+        this.viewCounts++;
+    }
     public void changeAccessType(AccessTypes accessTypes) {
         this.accessTypes = accessTypes;
     }

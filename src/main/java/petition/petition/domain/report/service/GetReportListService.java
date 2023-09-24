@@ -3,6 +3,7 @@ package petition.petition.domain.report.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import petition.petition.domain.petition.exception.NotAdminException;
 import petition.petition.domain.report.domain.repository.ReportRepository;
 import petition.petition.domain.report.presentation.dto.response.ReportListResponse;
 import petition.petition.domain.user.domain.User;
@@ -10,6 +11,8 @@ import petition.petition.domain.user.service.facade.UserFacade;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static petition.petition.domain.user.domain.type.Role.ADMIN;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +25,10 @@ public class GetReportListService {
     public List<ReportListResponse> getReport() {
 
         User currentUser = userFacade.getCurrentUser();
+
+        if (currentUser.getRole() != ADMIN) {
+            throw NotAdminException.EXCEPTION;
+        }
 
         return reportRepository.findAll()
                 .stream()

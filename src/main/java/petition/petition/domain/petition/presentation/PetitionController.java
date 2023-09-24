@@ -36,19 +36,17 @@ public class PetitionController {
     private final ChangeWaitingService changeWaitingService;
     private final ChangeAccessService changeAccessService;
     private final ChangeNormalService changeNormalService;
-    private final S3Service s3Service;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void createPetition(@RequestPart("content") CreatePetitionRequest request,
                                @RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles) {
-        List<String> imgList = s3Service.upload(multipartFiles);
-        createPetitionService.createPetition(request, imgList);
+        createPetitionService.createPetition(request, multipartFiles);
     }
 
-    @PatchMapping("/{petition-id}")
-    public void modify(@PathVariable("petition-id") Long id , @RequestBody @Valid ModifyPetitionRequest request) {
-        modifyPetitionService.modifyPetition(id,request);
+    @PatchMapping("/{petitionId}")
+    public void modify(@PathVariable Long petitionId , @RequestBody @Valid ModifyPetitionRequest request) {
+        modifyPetitionService.modifyPetition(petitionId,request);
     }
 
     @DeleteMapping("/{petitionId}")

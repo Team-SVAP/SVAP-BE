@@ -21,15 +21,16 @@ public class ModifyPetitionService {
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void modifyPetition(Long id, ModifyPetitionRequest request) {
+    public void modifyPetition(Long petitionId, ModifyPetitionRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
-        Petition petition = petitionRepository.findById(id)
+        Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(()-> PetitionNotFoundException.EXCEPTION);
 
         if (!currentUser.equals(petition.getUser()) && currentUser.getRole() != ADMIN) {
             throw WriterMisMatchedException.EXCEPTION;
         }
+
 
         petition.modifyPetition(request.getTitle(), request.getContent(), request.getTypes(), request.getLocation());
     }

@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.types.AccessTypes;
+import petition.petition.domain.petition.domain.types.Types;
+import petition.petition.domain.user.domain.User;
 
 import java.util.List;
 
@@ -21,7 +23,13 @@ public class PetitionResponse {
 
     private AccessTypes accessTypes;
 
+    private Types types;
+
     private String location;
+
+    private int viewCounts;
+
+    private Long userId;
 
     private List<String> imgUrl;
 
@@ -33,7 +41,10 @@ public class PetitionResponse {
                 .content(petition.getContent())
                 .voteCounts(petition.getVoteCounts())
                 .accessTypes(petition.getAccessTypes())
+                .types(petition.getTypes())
                 .location(petition.getLocation())
+                .viewCounts(petition.getViewCounts())
+                .userId(petition.getUser().getId())
                 .imgUrl(petition.getImgList())
                 .build();
 

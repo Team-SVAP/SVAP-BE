@@ -3,10 +3,10 @@ package petition.petition.domain.user.presentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
 import petition.petition.domain.user.presentation.dto.request.LoginRequest;
 import petition.petition.domain.user.presentation.dto.request.SignupRequest;
-import petition.petition.domain.user.presentation.dto.response.MyPetitionResponse;
 import petition.petition.domain.user.service.*;
 import petition.petition.global.security.TokenResponse;
 
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<MyPetitionResponse> myPetition() {
+    public List<PetitionListResponse> myPetition() {
         return myPetitionService.myPetition();
 
     }

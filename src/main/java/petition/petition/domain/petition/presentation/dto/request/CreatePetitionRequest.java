@@ -17,4 +17,5 @@ public class CreatePetitionRequest {
 
     private String location;
 
+
 }

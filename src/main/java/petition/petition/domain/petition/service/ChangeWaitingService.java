@@ -6,9 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
+import petition.petition.domain.petition.exception.NotAdminException;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.service.facade.UserFacade;
+
+import static petition.petition.domain.user.domain.type.Role.ADMIN;
 
 
 @Service
@@ -22,6 +25,10 @@ public class ChangeWaitingService {
     public void changeWait(Long petitionId) {
 
         User currentUser = userFacade.getCurrentUser();
+
+        if (currentUser.getRole() != ADMIN) {
+            throw NotAdminException.EXCEPTION;
+        }
 
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(()-> PetitionNotFoundException.EXCEPTION);

@@ -1,6 +1,5 @@
 package petition.petition.global.config;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import petition.petition.global.security.jwt.JwtTokenFilter;
 import petition.petition.global.security.jwt.JwtTokenProvider;
-
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -47,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //admin
                 .antMatchers("/ban/**").hasRole("ADMIN")
-                .antMatchers("/report/get-list").hasRole("ADMIN")
                 .anyRequest().permitAll()
 
                 .and()
@@ -57,9 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-
     }
 
-
 }
-

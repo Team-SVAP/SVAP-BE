@@ -15,6 +15,8 @@ public class BanListResponse {
 
     private User user;
 
+    private Long banId;
+
     private User bannedBy;
 
     private String banReason;
@@ -24,6 +26,7 @@ public class BanListResponse {
     public BanListResponse(Ban ban) {
         id = ban.getId();
         user = ban.getUser();
+        banId = ban.getId();
         bannedBy = ban.getBannedBy();
         banReason = ban.getBanReason();
         bannedTime = ban.getBannedTime();
