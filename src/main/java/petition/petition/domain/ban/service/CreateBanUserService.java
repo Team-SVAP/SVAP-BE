@@ -34,7 +34,7 @@ public class CreateBanUserService {
         banRepository.save(
                 Ban.builder()
                         .user(user)
-                        .bannedBy(currentUser)
+                        .bannedBy(currentUser.getUserName())
                         .banReason(request.getBanReason())
                         .bannedTime(now)
                         .build()

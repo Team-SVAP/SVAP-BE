@@ -20,8 +20,6 @@ public class GetPetitionService {
 
     public PetitionResponse get(Long petitionId) {
 
-        User currentUser = userFacade.getCurrentUser();
-
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 

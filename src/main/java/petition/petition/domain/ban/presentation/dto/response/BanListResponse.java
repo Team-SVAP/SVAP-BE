@@ -13,11 +13,11 @@ public class BanListResponse {
 
     private Long id;
 
-    private User user;
+    private String userName;
 
-    private Long banId;
+    private Long userId;
 
-    private User bannedBy;
+    private String bannedBy;
 
     private String banReason;
 
@@ -25,8 +25,8 @@ public class BanListResponse {
 
     public BanListResponse(Ban ban) {
         id = ban.getId();
-        user = ban.getUser();
-        banId = ban.getId();
+        userName = ban.getUser().getUserName();
+        userId = ban.getUser().getId();
         bannedBy = ban.getBannedBy();
         banReason = ban.getBanReason();
         bannedTime = ban.getBannedTime();

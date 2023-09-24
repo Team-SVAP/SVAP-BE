@@ -20,9 +20,7 @@ public class Ban {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "banned_by_user_id")
-    private User bannedBy;
+    private String bannedBy;
 
     private String banReason;
 

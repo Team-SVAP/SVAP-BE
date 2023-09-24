@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.ban.domain.Ban;
 import petition.petition.domain.ban.domain.repository.BanRepository;
 import petition.petition.domain.ban.exception.BanNotFoundException;
+import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.service.facade.UserFacade;
 
 @Service
@@ -17,6 +18,8 @@ public class UnBanService {
     private final BanRepository banRepository;
 
     public void unBan(Long banId) {
+
+        User currentUser = userFacade.getCurrentUser();
 
         Ban ban = banRepository.findById(banId)
                 .orElseThrow(() -> BanNotFoundException.EXCEPTION);
