@@ -26,7 +26,6 @@ public class UserSignupService {
         userRepository.save(
                 User.builder()
                         .accountId(request.getAccountId())
-                        .userEmail(request.getUserEmail())
                         .userName(request.getUserName())
                         .password(request.getPassword())
                         .role(Role.STUDENT)

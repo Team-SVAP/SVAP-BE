@@ -22,7 +22,6 @@ public class AccessedAllPetitionService {
 
     public List<PetitionListResponse> allAccessed() {
 
-        User currentUser = userFacade.getCurrentUser();
         return petitionRepository.findAllByAccessTypesOrderByDateTimeDesc(AccessTypes.APPROVAL)
                 .stream()
                 .map(PetitionListResponse::new)

@@ -70,7 +70,7 @@ public class JwtTokenProvider {
 
         refreshTokenRepository.save(
                 RefreshToken.builder()
-                        .userEmail(accountId)
+                        .accountId(accountId)
                         .refreshToken(refreshToken)
                         .expiration(jwtProperties.getRefreshExp())
                         .build());

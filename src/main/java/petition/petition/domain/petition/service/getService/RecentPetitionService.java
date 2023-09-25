@@ -23,8 +23,6 @@ public class RecentPetitionService {
 
     public List<PetitionListResponse> getRecent(Types type) {
 
-        User currentUser = userFacade.getCurrentUser();
-
         return petitionRepository.findAllByTypesAndAccessTypesOrderByDateTimeDesc(type, AccessTypes.NORMAL)
                 .stream()
                 .map(PetitionListResponse::new)

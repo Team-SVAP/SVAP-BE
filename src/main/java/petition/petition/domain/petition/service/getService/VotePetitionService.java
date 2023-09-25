@@ -24,8 +24,6 @@ public class VotePetitionService {
 
     public List<PetitionListResponse> getVote(Types type) {
 
-        User currentUser = userFacade.getCurrentUser();
-
         return petitionRepository.findAllByTypes(type)
                 .stream()
                 .sorted(Comparator.comparingInt(Petition::getVoteCounts).reversed())

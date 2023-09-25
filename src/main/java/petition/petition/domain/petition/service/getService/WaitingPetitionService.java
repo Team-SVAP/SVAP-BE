@@ -21,8 +21,6 @@ public class WaitingPetitionService {
 
     public List<PetitionListResponse> getWaiting(Types type) {
 
-        userFacade.getCurrentUser();
-
         return petitionRepository.findAllByTypesAndAccessTypesOrderByDateTimeDesc(type, AccessTypes.WAITING)
                 .stream()
                 .map(PetitionListResponse::new)

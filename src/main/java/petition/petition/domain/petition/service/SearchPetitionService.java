@@ -19,10 +19,9 @@ import java.util.stream.Collectors;
 public class SearchPetitionService {
     private final PetitionRepository petitionRepository;
 
-    private final UserFacade userFacade;
 
     public List<PetitionListResponse> search(SearchPetitionRequest request) {
-        
+
         return petitionRepository.findAllByTitleContaining(request.getTitle())
                 .stream()
                 .map(PetitionListResponse::new)

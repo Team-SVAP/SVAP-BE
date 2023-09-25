@@ -13,13 +13,17 @@ public class ReportListResponse {
 
     private Long id;
 
-    private Petition petition;
+    private String title;
+
+    private Long petitionId;
 
     private LocalDateTime reportTime;
 
     public ReportListResponse(Report report) {
         id = report.getId();
-        petition = report.getPetition();
+        title = report.getPetition().getTitle();
+        petitionId = report.getPetition().getId();
         reportTime = report.getReportTime();
     }
+
 }

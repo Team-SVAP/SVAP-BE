@@ -25,4 +25,5 @@ public class ReportController {
     public List<ReportListResponse> getReport() {
         return getReportListService.getReport();
     }
+
 }

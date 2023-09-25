@@ -16,8 +16,6 @@ import petition.petition.domain.user.service.facade.UserFacade;
 public class GetPetitionService {
     private final PetitionRepository petitionRepository;
 
-    private final UserFacade userFacade;
-
     public PetitionResponse get(Long petitionId) {
 
         Petition petition = petitionRepository.findById(petitionId)

@@ -11,7 +11,7 @@ import petition.petition.global.security.jwt.JwtTokenProvider;
 @RequiredArgsConstructor
 public class ReissueService {
 
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
     public TokenResponse reissue(String refreshToken) {

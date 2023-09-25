@@ -33,7 +33,7 @@ public class CreateReportService {
 
         reportRepository.save(
                 Report.builder()
-                        .user(currentUser)
+                        .whoReported(currentUser.getUserName())
                         .petition(petition)
                         .reportTime(now)
                         .build()

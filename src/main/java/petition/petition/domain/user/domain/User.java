@@ -19,11 +19,8 @@ public class User {
     @Column(columnDefinition = "varchar(8)", nullable = false)
     private String userName;
 
-    @Column(nullable = false, unique = true)
+    @Column(columnDefinition = "varchar(20)", nullable = false, unique = true)
     private String accountId;
-
-    @Column(nullable = false)
-    private String userEmail;
 
     @Column(nullable = false)
     private String password;

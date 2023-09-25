@@ -23,7 +23,6 @@ public class VoteAllPetitionService {
 
     public List<PetitionListResponse> allVote() {
 
-        User currentUser = userFacade.getCurrentUser();
         return petitionRepository.findAll()
                 .stream()
                 .sorted(Comparator.comparingInt(Petition::getVoteCounts).reversed())

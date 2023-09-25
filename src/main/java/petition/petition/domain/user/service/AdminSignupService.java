@@ -20,7 +20,7 @@ public class AdminSignupService {
     @Transactional
     public void signUp(AdminSignupRequest request) {
 
-        if (userRepository.existsByAccountId(request.getUserEmail())) {
+        if (userRepository.existsByAccountId(request.getAccountId())) {
             throw UserAlreadyExistException.EXCEPTION;
         }
 
@@ -32,7 +32,6 @@ public class AdminSignupService {
                 User.builder()
                         .userName(request.getUserName())
                         .accountId(request.getAccountId())
-                        .userEmail(request.getUserEmail())
                         .password(request.getPassword())
                         .role(Role.ADMIN)
                         .build()
