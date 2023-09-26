@@ -22,6 +22,7 @@ public class Ban {
 
     private String bannedBy;
 
+    @Column(columnDefinition = "text", nullable = false)
     private String banReason;
 
     private LocalDateTime bannedTime;

@@ -14,8 +14,8 @@ public class UserFacade {
 
     private final UserRepository userRepository;
     public User getCurrentUser() {
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByAccountId(userEmail)
+        String accountId = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
     }

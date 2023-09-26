@@ -7,16 +7,14 @@ import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.petition.presentation.dto.response.PetitionResponse;
-import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class GetPetitionService {
     private final PetitionRepository petitionRepository;
 
-    public PetitionResponse get(Long petitionId) {
+    public PetitionResponse getPetition(Long petitionId) {
 
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);

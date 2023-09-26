@@ -10,7 +10,6 @@ import petition.petition.domain.petition.presentation.dto.response.PetitionRespo
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 import petition.petition.domain.petition.service.*;
 import petition.petition.domain.petition.service.getService.*;
-import petition.petition.infra.service.S3Service;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -56,7 +55,7 @@ public class PetitionController {
 
     @GetMapping("/{petitionId}")
     public PetitionResponse getPetition(@PathVariable Long petitionId) {
-        return getPetitionService.get(petitionId);
+        return getPetitionService.getPetition(petitionId);
     }
 
     @GetMapping

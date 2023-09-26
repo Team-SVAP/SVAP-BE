@@ -21,7 +21,7 @@ public class ModifyPetitionService {
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void modifyPetition(Long petitionId, ModifyPetitionRequest request) {
+    public void modifyPetition(final Long petitionId, final ModifyPetitionRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
         Petition petition = petitionRepository.findById(petitionId)
@@ -30,7 +30,6 @@ public class ModifyPetitionService {
         if (!currentUser.equals(petition.getUser()) && currentUser.getRole() != ADMIN) {
             throw WriterMisMatchedException.EXCEPTION;
         }
-
 
         petition.modifyPetition(request.getTitle(), request.getContent(), request.getTypes(), request.getLocation());
     }
