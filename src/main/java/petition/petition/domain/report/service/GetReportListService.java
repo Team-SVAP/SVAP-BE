@@ -41,4 +41,5 @@ public class GetReportListService {
                 .map(ReportListResponse::new)
                 .collect(Collectors.toList());
     }
+
 }

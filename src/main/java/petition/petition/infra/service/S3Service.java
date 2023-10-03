@@ -1,6 +1,7 @@
 package petition.petition.infra.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -22,6 +23,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Component
 public class S3Service implements ImageUtil {
+
+    private final AmazonS3Client amazonS3Client;
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -109,6 +112,10 @@ public class S3Service implements ImageUtil {
             throw WrongImageException.EXCEPTION;
         }
         return fileName.substring(fileName.lastIndexOf("."));
+    }
+
+    public void delete(String objectName, String path) {
+        amazonS3Client.deleteObject(bucket, path + objectName);
     }
 
     public String getFileUrl(String fileName) {

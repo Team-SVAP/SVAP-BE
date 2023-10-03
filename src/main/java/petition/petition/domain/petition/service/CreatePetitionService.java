@@ -43,7 +43,7 @@ public class CreatePetitionService {
                         .build()
         );
 
-        petition.imageListUpload(imgList);
+        petition.imageListUpload(imgList); //나 코드 완전 더럽게 짰네
 
         petitionRepository.save(petition);
 

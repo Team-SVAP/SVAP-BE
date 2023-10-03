@@ -1,6 +1,7 @@
 package petition.petition.domain.ban.presentation;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import petition.petition.domain.ban.presentation.dto.request.BanRequest;
 import petition.petition.domain.ban.presentation.dto.response.BanListResponse;
@@ -20,6 +21,7 @@ public class BanController {
     private final GetBanListService getBanListService;
     private final UnBanService unBanService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{userId}")
     public void createBan(@PathVariable Long userId, @RequestBody @Valid BanRequest request) {
         createBanUserService.createBan(userId, request);
