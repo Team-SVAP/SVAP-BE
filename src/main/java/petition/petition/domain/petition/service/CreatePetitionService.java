@@ -24,7 +24,7 @@ public class CreatePetitionService {
     private final UserFacade userFacade;
     private final S3Service s3Service;
 
-    public void createPetition(CreatePetitionRequest request, List<MultipartFile> multipartFiles) {
+    public void createImagePetition(CreatePetitionRequest request, List<MultipartFile> multipartFiles) {
         User currentUser = userFacade.getCurrentUser();
 
         List<String> imgList = s3Service.upload(multipartFiles);
@@ -44,6 +44,27 @@ public class CreatePetitionService {
         );
 
         petition.imageListUpload(imgList); //나 코드 완전 더럽게 짰네
+
+        petitionRepository.save(petition);
+
+    }
+
+    public void createPetition(CreatePetitionRequest request) {
+        User currentUser = userFacade.getCurrentUser();
+
+        LocalDateTime now = LocalDateTime.now();
+
+        Petition petition = petitionRepository.save(
+                Petition.builder()
+                        .user(currentUser)
+                        .title(request.getTitle())
+                        .content(request.getContent())
+                        .accessTypes(AccessTypes.NORMAL)
+                        .types(request.getTypes())
+                        .location(request.getLocation())
+                        .dateTime(now)
+                        .build()
+        );
 
         petitionRepository.save(petition);
 

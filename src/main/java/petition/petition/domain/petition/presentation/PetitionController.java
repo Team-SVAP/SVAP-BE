@@ -39,8 +39,14 @@ public class PetitionController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void createPetition(@RequestPart("content") CreatePetitionRequest request,
-                               @RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles) {
-        createPetitionService.createPetition(request, multipartFiles);
+                               @RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles)
+    {
+        if (multipartFiles != null) {
+            createPetitionService.createImagePetition(request, multipartFiles);
+        }
+        else {
+            createPetitionService.createPetition(request);
+        }
     }
 
     @PatchMapping("/{petitionId}")

@@ -1,5 +1,6 @@
 package petition.petition.infra.service;
 
+import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -23,8 +24,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Component
 public class S3Service implements ImageUtil {
-
-    private final AmazonS3Client amazonS3Client;
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -114,8 +113,13 @@ public class S3Service implements ImageUtil {
         return fileName.substring(fileName.lastIndexOf("."));
     }
 
-    public void delete(String objectName, String path) {
-        amazonS3Client.deleteObject(bucket, path + objectName);
+    public void deleteFile(String fileName) throws IOException{
+        try {
+            amazonS3.deleteObject(bucket, fileName);
+        } catch (SdkClientException e){
+            throw new IOException("삭제를 실패하였습니다.", e);
+        }
+
     }
 
     public String getFileUrl(String fileName) {
