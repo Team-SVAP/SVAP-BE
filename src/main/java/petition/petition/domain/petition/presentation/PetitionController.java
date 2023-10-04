@@ -114,7 +114,7 @@ public class PetitionController {
         changeNormalService.changeNormal(petitionId);
     }
 
-    @PatchMapping("/waiting/{petitionId}")
+    @PatchMapping("/wait/{petitionId}")
     public void changeWaiting(@PathVariable Long petitionId) {
         changeWaitingService.changeWait(petitionId);
     }
