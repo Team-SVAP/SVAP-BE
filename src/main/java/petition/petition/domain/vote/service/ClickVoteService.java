@@ -1,7 +1,9 @@
 package petition.petition.domain.vote.service;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
@@ -10,10 +12,10 @@ import petition.petition.domain.user.service.facade.UserFacade;
 import petition.petition.domain.vote.domain.Vote;
 import petition.petition.domain.vote.domain.repository.VoteRepository;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ClickVoteService {
 
     private final VoteRepository voteRepository;
@@ -27,25 +29,23 @@ public class ClickVoteService {
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
-        Optional<Vote> existVote = voteRepository.findByUserAndPetition(currentUser, petition);
 
-        if(existVote.isPresent())
+        if(voteRepository.existsByUserAndPetition(currentUser, petition))
         {
-            voteRepository.delete(existVote.get());
+            voteRepository.deleteByUserAndPetition(currentUser, petition);
 
             petition.minusVoteCount();
         }
-        else if (!existVote.isPresent())
+        else
         {
-
             petition.addVoteCount();
 
-            Vote vote = Vote.builder()
-                    .user(currentUser)
-                    .petition(petition)
-                    .build();
+            voteRepository.save(
+                    Vote.builder()
+                            .user(currentUser)
+                            .petition(petition)
+                            .build());
 
-            voteRepository.save(vote);
         }
     }
 }

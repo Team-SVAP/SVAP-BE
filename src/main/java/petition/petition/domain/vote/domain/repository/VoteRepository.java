@@ -9,5 +9,8 @@ import java.util.Optional;
 
 public interface VoteRepository extends CrudRepository<Vote, Long> {
 
-    Optional<Vote> findByUserAndPetition(User user, Petition petition);
+    boolean existsByUserAndPetition(User user, Petition petition);
+
+    void deleteByUserAndPetition(User user, Petition petition);
+
 }
