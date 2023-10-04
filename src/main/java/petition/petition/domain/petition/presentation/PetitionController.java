@@ -94,7 +94,7 @@ public class PetitionController {
         return waitingPetitionService.getWaiting(type);
     }
 
-    @GetMapping("/all-wait")
+    @GetMapping("/wait-all")
     public List<PetitionListResponse> allWaiting() {
         return waitingAllPetitionService.allWaiting();
     }
