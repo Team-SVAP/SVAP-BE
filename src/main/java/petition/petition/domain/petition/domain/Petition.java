@@ -32,7 +32,7 @@ public class Petition {
     @Enumerated(EnumType.STRING)
     private Types types;
 
-    @Column(columnDefinition = "varc4har(8)", nullable = false)
+    @Column(columnDefinition = "varchar(8)", nullable = false)
     private String location;
 
     @Column(nullable = false)

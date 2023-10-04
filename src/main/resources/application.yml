@@ -4,9 +4,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: ${URL:jdbc:mysql://localhost:3306/svap}
+    username: ${USERNAME:root}
+    password: ${PASSWORD:070211}
   jpa:
     hibernate:
       ddl-auto: update
@@ -48,11 +48,11 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS-KEY}      # AWS IAM AccessKey 적기
-      secretKey: ${SECRET-KEY}   # AWS IAM SecretKey 적기
+      accessKey: ${ACCESS-KEY:AKIA472XLIA4MZWDJ2YB}      # AWS IAM AccessKey 적기
+      secretKey: ${SECRET-KEY:r21g2LMb65thGTlzJOxgdneVp/KFXsQG2VudNJkP}   # AWS IAM SecretKey 적기
     s3:
-      bucket: ${BUCKET}
+      bucket: ${BUCKET:kangsunbucket}
     region:
-      static: ${STATIC}
+      static: ${STATIC:ap-northeast-2}
   stack:
     auto: false

@@ -24,7 +24,7 @@ public class ModifyPetitionRequest {
     @NotNull(message = "타입을 입력하세요")
     private Types types;
 
-    @Size(min = 1, max = 10, message = "아이디는 최소 5자, 최대 10자 입니다.")
+    @Size(min = 1, max = 10, message = "장소는 최소 5자, 최대 10자 입니다.")
     private String location;
 
 }

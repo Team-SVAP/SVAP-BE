@@ -21,7 +21,7 @@ public class ModifyPetitionService {
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void modifyPetition(final Long petitionId, final ModifyPetitionRequest request) {
+    public void modifyPetition(Long petitionId, ModifyPetitionRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
         Petition petition = petitionRepository.findById(petitionId)

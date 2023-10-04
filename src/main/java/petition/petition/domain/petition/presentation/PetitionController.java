@@ -41,11 +41,11 @@ public class PetitionController {
     public void createPetition(@RequestPart("content") CreatePetitionRequest request,
                                @RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles)
     {
-        if (multipartFiles != null) {
-            createPetitionService.createImagePetition(request, multipartFiles);
+        if (multipartFiles == null) {
+            createPetitionService.createPetition(request);
         }
         else {
-            createPetitionService.createPetition(request);
+            createPetitionService.createImagePetition(request, multipartFiles);
         }
     }
 
