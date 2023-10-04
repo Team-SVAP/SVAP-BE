@@ -39,11 +39,12 @@ public class CreatePetitionService {
                         .accessTypes(AccessTypes.NORMAL)
                         .types(request.getTypes())
                         .location(request.getLocation())
+                        .imgList(imgList)
                         .dateTime(now)
                         .build()
         );
 
-        petition.imageListUpload(imgList); //나 코드 완전 더럽게 짰네
+        //petition.imageListUpload(imgList); //나 코드 완전 더럽게 짰네
 
         petitionRepository.save(petition);
 
