@@ -30,14 +30,12 @@ public class ClickVoteService {
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
 
-        if(voteRepository.existsByUserAndPetition(currentUser, petition))
-        {
+        if(voteRepository.existsByUserAndPetition(currentUser, petition)) {
+
             voteRepository.deleteByUserAndPetition(currentUser, petition);
 
             petition.minusVoteCount();
-        }
-        else
-        {
+        } else {
             petition.addVoteCount();
 
             voteRepository.save(
@@ -48,4 +46,5 @@ public class ClickVoteService {
 
         }
     }
+
 }
