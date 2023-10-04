@@ -11,7 +11,7 @@ import java.util.List;
 public interface PetitionRepository extends JpaRepository<Petition, Long> {
 
     //모든 청원 조회
-    List<Petition> findAllOrderByDateTimeDesc();
+    List<Petition> findAllByOrderByDateTimeDesc();
 
     //특정 타입 청원 조회
     List<Petition> findAllByTypesAndAccessTypesOrderByDateTimeDesc(Types types, AccessTypes accessTypes);
@@ -23,4 +23,6 @@ public interface PetitionRepository extends JpaRepository<Petition, Long> {
 
     //제목으로 검색
     List<Petition> findAllByTitleContaining(String title);
+
+    List<Petition> findAllByAccessTypesOrderByDateTimeDesc(AccessTypes accessTypes);
 }

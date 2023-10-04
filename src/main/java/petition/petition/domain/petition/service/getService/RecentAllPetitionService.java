@@ -18,11 +18,10 @@ import java.util.stream.Collectors;
 public class RecentAllPetitionService {
 
     private final PetitionRepository petitionRepository;
-    private final UserFacade userFacade;
 
     public List<PetitionListResponse> allRecent() {
 
-        return petitionRepository.findAllOrderByDateTimeDesc()
+        return petitionRepository.findAllByOrderByDateTimeDesc()
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
