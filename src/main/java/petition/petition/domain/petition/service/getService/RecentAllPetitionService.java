@@ -22,7 +22,7 @@ public class RecentAllPetitionService {
 
     public List<PetitionListResponse> allRecent() {
 
-        return petitionRepository.findAllByAccessTypesOrderByDateTimeDesc(AccessTypes.NORMAL)
+        return petitionRepository.findAllOrderByDateTimeDesc()
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
