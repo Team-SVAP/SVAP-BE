@@ -27,11 +27,12 @@ public class LoginService {
         User user = userRepository.findByAccountId(request.getAccountId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        if (banRepository.existsBanByUser(user)) {
+        if (banRepository.existsByUser(user)) {
             throw BannedUserException.EXCEPTION;
         }
 
         TokenResponse token = jwtTokenProvider.createToken(user.getAccountId());
         return token;
     }
+
 }
