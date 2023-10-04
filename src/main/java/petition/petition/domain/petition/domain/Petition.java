@@ -67,10 +67,6 @@ public class Petition {
         this.accessTypes = accessTypes;
     }
 
-    public void imageListUpload(List<String> imgList) {
-        this.imgList = imgList;
-    }
-
     public void addVoteCount()  {
         this.voteCounts++;
     }

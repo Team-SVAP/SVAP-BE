@@ -6,6 +6,6 @@ import petition.petition.domain.user.domain.User;
 
 public interface BanRepository extends JpaRepository<Ban, Long> {
 
-    Boolean existsBanByUser(User user);
+    Boolean existsByUser(User user);
 
 }
