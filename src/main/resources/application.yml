@@ -1,13 +1,14 @@
 spring:
   main:
     allow-bean-definition-overriding : true
-
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${URL:jdbc:mysql://localhost:3306/svap}
+    url: ${URL:jdbc:mysql://15.164.62.45:3306/svap}
     username: ${USERNAME:root}
     password: ${PASSWORD:070211}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQLDialect
