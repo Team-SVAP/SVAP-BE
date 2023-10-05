@@ -20,7 +20,7 @@ public class UserController {
 
     private final UserSignupService userSignupService;
     private final LoginService loginService;
-    private final ReissueService reissueService;
+    // final ReissueService reissueService;
     private final AdminSignupService adminSignupService;
     private final MyPetitionService myPetitionService;
 
@@ -42,11 +42,12 @@ public class UserController {
         return loginService.login(request);
     }
 
+    /*
     @PostMapping("/reissue")
     @ResponseStatus(HttpStatus.CREATED)
     public TokenResponse reissue(@RequestHeader(name = "AUTHORIZATION_HEADER") String refreshToken) {
         return reissueService.reissue(refreshToken);
-    }
+    }*/
 
     @GetMapping
     public List<PetitionListResponse> myPetition() {

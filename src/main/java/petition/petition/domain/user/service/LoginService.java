@@ -31,8 +31,9 @@ public class LoginService {
             throw BannedUserException.EXCEPTION;
         }
 
-        TokenResponse token = jwtTokenProvider.createToken(user.getAccountId());
-        return token;
+        return TokenResponse.builder()
+                .accessToken(jwtTokenProvider.createAccessToken(user.getAccountId()))
+                .build();
     }
 
 }

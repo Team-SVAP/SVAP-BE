@@ -7,11 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import petition.petition.domain.auth.RefreshToken;
-import petition.petition.domain.auth.RefreshTokenRepository;
 import petition.petition.global.exception.ExpiredTokenException;
 import petition.petition.global.exception.InvalidTokenException;
-import petition.petition.global.security.TokenResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -25,7 +22,7 @@ public class JwtTokenProvider {
 
 
     private final JwtProperties jwtProperties;
-    private final RefreshTokenRepository refreshTokenRepository;
+    //private final RefreshTokenRepository refreshTokenRepository;
     private final UserDetailsService userDetailsService;
 
 /*
@@ -34,14 +31,15 @@ public class JwtTokenProvider {
         accessSecretKey = Base64.getEncoder().encodeToString(accessSecretKey.getBytes());
     }*/
 
-    public TokenResponse createToken(String accountId){
+    /*
+    public TokenResponse createToken(String accountId) {
         return TokenResponse
                 .builder()
                 .accessToken(createAccessToken(accountId))
                 .refreshToken(createRefreshToken(accountId))
                 .build();
     }
-
+*/
     // JWT 토큰 생성
     public String createAccessToken(String accountId) {
         Claims claims = Jwts.claims().setSubject(accountId); // JWT payload 에 저장되는 정보단위, 보통 여기서 user를 식별하는 값을 넣는다.
@@ -53,9 +51,10 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS256, SecretKey)  // 사용할 암호화 알고리즘과
                 .compact();
 
-    return accessToken;
+        return accessToken;
     }
 
+    /*
     private String createRefreshToken(String accountId) {
 
         Date now = new Date();
@@ -77,7 +76,7 @@ public class JwtTokenProvider {
 
         return refreshToken;
     }
-
+*/
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
@@ -125,13 +124,13 @@ public class JwtTokenProvider {
             throw InvalidTokenException.EXCEPTION;
         }
     }
-
+/*
     private boolean isRefreshToken(String token) {
         return getClaims(token).get("type").equals("refresh");
 
-    }
+    }*/
 
-
+/*
     public TokenResponse reissue(String refreshToken) {
 
         if(!isRefreshToken(refreshToken))
@@ -144,4 +143,6 @@ public class JwtTokenProvider {
                 .refreshToken(refreshToken)
                 .build();
     }
+
+ */
 }
