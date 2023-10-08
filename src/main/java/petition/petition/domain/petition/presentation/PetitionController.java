@@ -35,6 +35,7 @@ public class PetitionController {
     private final ChangeWaitingService changeWaitingService;
     private final ChangeAccessService changeAccessService;
     private final ChangeNormalService changeNormalService;
+    private final GetPopularPetitionService getPopularPetitionService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -62,6 +63,11 @@ public class PetitionController {
     @GetMapping("/{petitionId}")
     public PetitionResponse getPetition(@PathVariable Long petitionId) {
         return getPetitionService.getPetition(petitionId);
+    }
+
+    @GetMapping("popular")
+    public PetitionListResponse getPopular() {
+        return getPopularPetitionService.getPopular();
     }
 
     @GetMapping
