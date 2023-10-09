@@ -33,7 +33,6 @@ public class LoginService {
 
         return TokenResponse.builder()
                 .accessToken(jwtTokenProvider.createAccessToken(user.getAccountId()))
-                .role(user.getRole())
                 .build();
     }
 

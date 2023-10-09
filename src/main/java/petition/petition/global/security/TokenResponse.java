@@ -11,6 +11,5 @@ public class TokenResponse {
 
     private String accessToken;
 
-    private Role role;
     //private String refreshToken;
 }
