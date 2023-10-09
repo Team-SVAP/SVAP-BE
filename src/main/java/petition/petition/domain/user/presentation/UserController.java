@@ -5,8 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
+import petition.petition.domain.user.presentation.dto.request.CheckDuplicationRequest;
 import petition.petition.domain.user.presentation.dto.request.LoginRequest;
 import petition.petition.domain.user.presentation.dto.request.SignupRequest;
+import petition.petition.domain.user.presentation.dto.response.MyInfoResponse;
 import petition.petition.domain.user.service.*;
 import petition.petition.global.security.TokenResponse;
 
@@ -23,6 +25,8 @@ public class UserController {
     // final ReissueService reissueService;
     private final AdminSignupService adminSignupService;
     private final MyPetitionService myPetitionService;
+    private final CheckDuplicationService checkDuplicationService;
+    private final MyInfoService myInfoService;
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -54,4 +58,17 @@ public class UserController {
         return myPetitionService.myPetition();
 
     }
+
+    @GetMapping("/duplication")
+    public void checkDuplication(@RequestBody @Valid CheckDuplicationRequest request) {
+        checkDuplicationService.checkDuplication(request);
+
+    }
+
+    @GetMapping("/my-info")
+    public MyInfoResponse myInfo() {
+        return myInfoService.myInfo();
+
+    }
+
 }
