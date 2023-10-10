@@ -65,7 +65,7 @@ public class PetitionController {
         return getPetitionService.getPetition(petitionId);
     }
 
-    @GetMapping("popular")
+    @GetMapping("/popular")
     public PetitionListResponse getPopular() {
         return getPopularPetitionService.getPopular();
     }
