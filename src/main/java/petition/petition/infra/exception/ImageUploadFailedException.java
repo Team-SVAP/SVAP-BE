@@ -1,5 +1,6 @@
 package petition.petition.infra.exception;
 
+
 import petition.petition.global.error.exception.BusinessException;
 import petition.petition.global.error.exception.ErrorCode;
 
