@@ -2,9 +2,8 @@ package petition.petition.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
-import petition.petition.domain.user.exception.UserNotFoundException;
+import petition.petition.domain.user.exception.IdAlreadyExistsException;
 import petition.petition.domain.user.presentation.dto.request.CheckDuplicationRequest;
 
 @Service
@@ -15,8 +14,9 @@ public class CheckDuplicationService {
 
     public void checkDuplication(CheckDuplicationRequest request) {
 
-        User user = userRepository.findByAccountId(request.getAccountId())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        if (userRepository.existsByAccountId(request.getAccountId())) {
+            throw IdAlreadyExistsException.EXCEPTION;
+        }
 
     }
 
