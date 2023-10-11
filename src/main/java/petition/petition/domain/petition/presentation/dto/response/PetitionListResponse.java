@@ -15,15 +15,19 @@ public class PetitionListResponse {
 
     private String title;
 
+    private String content;
+
     private LocalDateTime dateTime;
 
     private Types types;
 
     private String location;
 
+
     public PetitionListResponse(Petition petition) {
         id = petition.getId();
         title = petition.getTitle();
+        content = petition.getContent();
         dateTime = petition.getDateTime();
         types = petition.getTypes();
         location = petition.getLocation();
