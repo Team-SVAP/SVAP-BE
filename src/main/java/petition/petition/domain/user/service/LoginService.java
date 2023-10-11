@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.ban.domain.repository.BanRepository;
+import petition.petition.domain.petition.exception.PasswordMismatchException;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.exception.BannedUserException;
@@ -29,6 +30,10 @@ public class LoginService {
 
         if (banRepository.existsByUser(user)) {
             throw BannedUserException.EXCEPTION;
+        }
+
+        if (!request.getPassword().equals(user.getPassword())) {
+            throw PasswordMismatchException.EXCEPTION;
         }
 
         return TokenResponse.builder()
