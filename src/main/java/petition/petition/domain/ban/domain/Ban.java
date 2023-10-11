@@ -4,6 +4,7 @@ import lombok.*;
 import petition.petition.domain.user.domain.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,5 +26,5 @@ public class Ban {
     @Column(columnDefinition = "text", nullable = false)
     private String banReason;
 
-    private LocalDateTime bannedTime;
+    private LocalDate bannedTime;
 }

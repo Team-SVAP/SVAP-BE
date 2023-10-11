@@ -11,7 +11,9 @@ import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.exception.UserNotFoundException;
 import petition.petition.domain.user.service.facade.UserFacade;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
@@ -29,14 +31,14 @@ public class CreateBanUserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate dateTime = LocalDate.now();
 
         banRepository.save(
                 Ban.builder()
                         .user(user)
                         .bannedBy(currentUser.getUserName())
                         .banReason(request.getBanReason())
-                        .bannedTime(now)
+                        .bannedTime(dateTime)
                         .build()
         );
     }

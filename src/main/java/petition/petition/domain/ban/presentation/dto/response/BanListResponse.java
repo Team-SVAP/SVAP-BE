@@ -5,6 +5,7 @@ import lombok.Getter;
 import petition.petition.domain.ban.domain.Ban;
 import petition.petition.domain.user.domain.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class BanListResponse {
 
     private String banReason;
 
-    private LocalDateTime bannedTime;
+    private LocalDate bannedTime;
 
     public BanListResponse(Ban ban) {
         id = ban.getId();
