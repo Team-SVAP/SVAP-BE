@@ -11,7 +11,6 @@ import petition.petition.domain.user.service.facade.UserFacade;
 @RequiredArgsConstructor
 public class MyInfoService {
 
-    private final UserRepository userRepository;
     private final UserFacade userFacade;
 
     public MyInfoResponse myInfo() {

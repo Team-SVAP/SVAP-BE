@@ -70,7 +70,7 @@ public class PetitionController {
         return getPopularPetitionService.getPopular();
     }
 
-    @GetMapping
+    @PostMapping("/search")
     public List<PetitionListResponse> search(@RequestBody @Valid SearchPetitionRequest request) {
         return searchPetitionService.search(request);
     }

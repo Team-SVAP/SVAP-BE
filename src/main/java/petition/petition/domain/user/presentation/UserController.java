@@ -59,7 +59,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/duplication")
+    @PostMapping("/duplication")
     public void checkDuplication(@RequestBody @Valid CheckDuplicationRequest request) {
         checkDuplicationService.checkDuplication(request);
 
