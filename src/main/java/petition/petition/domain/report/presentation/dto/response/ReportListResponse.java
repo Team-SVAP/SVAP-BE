@@ -5,6 +5,7 @@ import lombok.Getter;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.report.domain.Report;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class ReportListResponse {
 
     private Long petitionId;
 
-    private LocalDateTime reportTime;
+    private LocalDate reportTime;
 
     public ReportListResponse(Report report) {
         id = report.getId();

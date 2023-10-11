@@ -7,6 +7,7 @@ import petition.petition.domain.user.domain.User;
 import petition.petition.infra.StringListConverter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Petition {
     private AccessTypes accessTypes;
 
     @Column(nullable = false)
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
 
     private int voteCounts;
 

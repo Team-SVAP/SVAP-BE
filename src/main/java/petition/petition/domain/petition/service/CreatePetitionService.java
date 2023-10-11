@@ -12,7 +12,9 @@ import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.service.facade.UserFacade;
 import petition.petition.infra.service.S3Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -29,7 +31,7 @@ public class CreatePetitionService {
 
         List<String> imgList = s3Service.upload(multipartFiles);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate dateTime = LocalDate.now();
 
         Petition petition = petitionRepository.save(
                 Petition.builder()
@@ -40,7 +42,7 @@ public class CreatePetitionService {
                         .types(request.getTypes())
                         .location(request.getLocation())
                         .imgList(imgList)
-                        .dateTime(now)
+                        .dateTime(dateTime)
                         .build()
         );
 
@@ -51,7 +53,7 @@ public class CreatePetitionService {
     public void createPetition(CreatePetitionRequest request) {
         User currentUser = userFacade.getCurrentUser();
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate dateTime = LocalDate.now();
 
         Petition petition = petitionRepository.save(
                 Petition.builder()
@@ -61,7 +63,7 @@ public class CreatePetitionService {
                         .accessTypes(AccessTypes.NORMAL)
                         .types(request.getTypes())
                         .location(request.getLocation())
-                        .dateTime(now)
+                        .dateTime(dateTime)
                         .build()
         );
 

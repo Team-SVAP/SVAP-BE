@@ -11,7 +11,9 @@ import petition.petition.domain.report.domain.repository.ReportRepository;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.service.facade.UserFacade;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
@@ -29,13 +31,13 @@ public class CreateReportService {
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate dateTime = LocalDate.now();
 
         reportRepository.save(
                 Report.builder()
                         .whoReported(currentUser.getUserName())
                         .petition(petition)
-                        .reportTime(now)
+                        .reportTime(dateTime)
                         .build()
         );
     }

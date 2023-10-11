@@ -4,6 +4,7 @@ import lombok.*;
 import petition.petition.domain.petition.domain.Petition;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +23,6 @@ public class Report {
     @JoinColumn(name = "petition_id")
     private Petition petition;
 
-    private LocalDateTime reportTime;
+    private LocalDate reportTime;
 
 }
