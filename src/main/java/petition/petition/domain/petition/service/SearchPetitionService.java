@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.presentation.dto.request.SearchPetitionRequest;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
-import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
 
 import java.util.List;
 import java.util.stream.Collectors;

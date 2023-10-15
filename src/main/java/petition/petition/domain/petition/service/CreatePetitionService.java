@@ -13,8 +13,6 @@ import petition.petition.domain.user.service.facade.UserFacade;
 import petition.petition.infra.service.S3Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service

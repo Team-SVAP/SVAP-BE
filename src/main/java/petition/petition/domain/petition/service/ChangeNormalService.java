@@ -9,8 +9,6 @@ import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.exception.NotAdminException;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.domain.type.Role;
-import petition.petition.domain.user.exception.WriterMisMatchedException;
 import petition.petition.domain.user.service.facade.UserFacade;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;

@@ -12,8 +12,6 @@ import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.service.facade.UserFacade;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor

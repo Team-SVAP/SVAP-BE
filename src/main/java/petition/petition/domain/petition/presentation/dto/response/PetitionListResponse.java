@@ -6,7 +6,6 @@ import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.types.Types;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor

@@ -5,7 +5,6 @@ import petition.petition.domain.petition.domain.Petition;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
