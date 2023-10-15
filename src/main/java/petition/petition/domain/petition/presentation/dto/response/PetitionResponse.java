@@ -5,8 +5,8 @@ import lombok.Getter;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
-import petition.petition.domain.user.domain.User;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -31,6 +31,8 @@ public class PetitionResponse {
 
     private Long userId;
 
+    private LocalDate dateTime;
+
     private List<String> imgUrl;
 
     public static PetitionResponse of(Petition petition) {
@@ -45,6 +47,7 @@ public class PetitionResponse {
                 .location(petition.getLocation())
                 .viewCounts(petition.getViewCounts())
                 .userId(petition.getUser().getId())
+                .dateTime(petition.getDateTime())
                 .imgUrl(petition.getImgList())
                 .build();
 
