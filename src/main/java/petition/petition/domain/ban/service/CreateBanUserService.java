@@ -24,11 +24,11 @@ public class CreateBanUserService {
     private final UserFacade userFacade;
     private final UserRepository userRepository;
 
-    public void createBan(Long userId, BanRequest request) {
+    public void createBan(String accountId, BanRequest request) {
 
         User currentUser = userFacade.getCurrentUser();
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         LocalDate dateTime = LocalDate.now();

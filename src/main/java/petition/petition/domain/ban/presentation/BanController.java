@@ -22,9 +22,9 @@ public class BanController {
     private final UnBanService unBanService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{userId}")
-    public void createBan(@PathVariable Long userId, @RequestBody @Valid BanRequest request) {
-        createBanUserService.createBan(userId, request);
+    @PostMapping("/{accountId}")
+    public void createBan(@PathVariable String accountId, @RequestBody @Valid BanRequest request) {
+        createBanUserService.createBan(accountId, request);
     }
 
     @DeleteMapping("/{banId}")

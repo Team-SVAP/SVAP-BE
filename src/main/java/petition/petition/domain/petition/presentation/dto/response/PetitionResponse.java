@@ -29,7 +29,7 @@ public class PetitionResponse {
 
     private int viewCounts;
 
-    private Long userId;
+    private String accountId;
 
     private LocalDate dateTime;
 
@@ -46,7 +46,7 @@ public class PetitionResponse {
                 .types(petition.getTypes())
                 .location(petition.getLocation())
                 .viewCounts(petition.getViewCounts())
-                .userId(petition.getUser().getId())
+                .accountId(petition.getUser().getAccountId())
                 .dateTime(petition.getDateTime())
                 .imgUrl(petition.getImgList())
                 .build();
