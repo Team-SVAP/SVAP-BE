@@ -2,7 +2,6 @@ package petition.petition.infra.service;
 
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import petition.petition.infra.ImageUtil;
 import petition.petition.infra.exception.ImageUploadFailedException;
 import petition.petition.infra.exception.WrongImageException;
 
@@ -23,24 +21,14 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
-public class S3Service implements ImageUtil {
-
-    @Value("${cloud.aws.credentials.accessKey}")
-    private String accessKey;
-
-    @Value("${cloud.aws.credentials.secretKey}")
-    private String secretKey;
+public class S3Service {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    @Value("${cloud.aws.region.static}")
-    private String region;
-
     private final AmazonS3 amazonS3;
 
     @Transactional
-    @Override
     public String uploadImage(MultipartFile image) {
         if (image.isEmpty() || image.getOriginalFilename() == null) {
             throw ImageUploadFailedException.EXCEPTION;
@@ -62,7 +50,7 @@ public class S3Service implements ImageUtil {
     }
 
     @Transactional
-    public List<String> upload(List<MultipartFile> multipartFile) {
+    public List<String> uploadImages(List<MultipartFile> multipartFile) {
 
         List<String> imgUrlList = new ArrayList<>();
 

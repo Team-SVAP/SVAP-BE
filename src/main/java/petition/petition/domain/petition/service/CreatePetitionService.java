@@ -27,7 +27,7 @@ public class CreatePetitionService {
     public void createImagePetition(CreatePetitionRequest request, List<MultipartFile> multipartFiles) {
         User currentUser = userFacade.getCurrentUser();
 
-        List<String> imgList = s3Service.upload(multipartFiles);
+        List<String> imgList = s3Service.uploadImages(multipartFiles);
 
         LocalDate dateTime = LocalDate.now();
 
