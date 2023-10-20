@@ -130,5 +130,4 @@ public class PetitionController {
         changeAccessService.changeAccess(petitionId);
     }
 
-
 }
