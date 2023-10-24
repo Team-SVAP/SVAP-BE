@@ -2,6 +2,7 @@ package petition.petition.domain.user.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.ban.domain.repository.BanRepository;
@@ -21,6 +22,7 @@ public class LoginService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final BanRepository banRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public TokenResponse login(LoginRequest request) {
@@ -32,7 +34,7 @@ public class LoginService {
             throw BannedUserException.EXCEPTION;
         }
 
-        if (!request.getPassword().equals(user.getPassword())) {
+        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
             throw PasswordMismatchException.EXCEPTION;
         }
 
