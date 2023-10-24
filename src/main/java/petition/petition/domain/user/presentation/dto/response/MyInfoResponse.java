@@ -11,4 +11,6 @@ public class MyInfoResponse {
     private String userName;
 
     private Role role;
+
+    private String accountId;
 }

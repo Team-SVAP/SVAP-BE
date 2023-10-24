@@ -19,6 +19,7 @@ public class MyInfoService {
         MyInfoResponse response = MyInfoResponse.builder()
                 .userName(currentUser.getUserName())
                 .role(currentUser.getRole())
+                .accountId(currentUser.getAccountId())
                 .build();
 
         return response;

@@ -34,7 +34,6 @@ public class GetReportListService {
 
         List<Report> reports = reportRepository.findAll();
 
-        // 역순 정렬
         reports.sort(Comparator.comparing(Report::getReportTime).reversed());
 
         return reports.stream()
