@@ -30,14 +30,14 @@ public class UserController {
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public void signup(@RequestBody @Valid SignupRequest request) {
-        userSignupService.signUp(request);
+    public TokenResponse signup(@RequestBody @Valid SignupRequest request) {
+        return userSignupService.signUp(request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/admin/signup")
-    public void adminSignup(@RequestBody @Valid AdminSignupRequest request) {
-        adminSignupService.signUp(request);
+    public TokenResponse adminSignup(@RequestBody @Valid AdminSignupRequest request) {
+        return adminSignupService.signUp(request);
     }
 
     @PostMapping("/login")

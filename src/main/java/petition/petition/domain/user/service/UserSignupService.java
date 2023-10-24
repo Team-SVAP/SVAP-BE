@@ -9,15 +9,18 @@ import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.domain.type.Role;
 import petition.petition.domain.user.exception.UserAlreadyExistException;
 import petition.petition.domain.user.presentation.dto.request.SignupRequest;
+import petition.petition.global.security.TokenResponse;
+import petition.petition.global.security.jwt.JwtTokenProvider;
 
 @Service
 @RequiredArgsConstructor
 public class UserSignupService {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public void signUp(SignupRequest request) {
+    public TokenResponse signUp(SignupRequest request) {
 
         if (userRepository.existsByAccountId(request.getAccountId())) {
             throw UserAlreadyExistException.EXCEPTION;
@@ -31,5 +34,9 @@ public class UserSignupService {
                         .role(Role.STUDENT)
                         .build()
         );
+
+        return TokenResponse.builder()
+                .accessToken(jwtTokenProvider.createAccessToken(request.getAccountId()))
+                .build();
     }
 }

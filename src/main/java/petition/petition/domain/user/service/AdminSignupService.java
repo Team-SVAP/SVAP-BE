@@ -10,6 +10,8 @@ import petition.petition.domain.user.domain.type.Role;
 import petition.petition.domain.user.exception.CodeMisMatchException;
 import petition.petition.domain.user.exception.UserAlreadyExistException;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
+import petition.petition.global.security.TokenResponse;
+import petition.petition.global.security.jwt.JwtTokenProvider;
 
 
 @Service
@@ -18,9 +20,11 @@ public class AdminSignupService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Transactional
-    public void signUp(AdminSignupRequest request) {
+    public TokenResponse signUp(AdminSignupRequest request) {
 
         if (userRepository.existsByAccountId(request.getAccountId())) {
             throw UserAlreadyExistException.EXCEPTION;
@@ -40,6 +44,10 @@ public class AdminSignupService {
                         .role(Role.ADMIN)
                         .build()
         );
+
+        return TokenResponse.builder()
+                .accessToken(jwtTokenProvider.createAccessToken(request.getAccountId()))
+                .build();
     }
 }
 
