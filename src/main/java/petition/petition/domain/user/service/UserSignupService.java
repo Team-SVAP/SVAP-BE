@@ -39,4 +39,5 @@ public class UserSignupService {
                 .accessToken(jwtTokenProvider.createAccessToken(request.getAccountId()))
                 .build();
     }
+
 }
