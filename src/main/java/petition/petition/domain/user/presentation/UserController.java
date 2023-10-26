@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserSignupService userSignupService;
     private final LoginService loginService;
-    // final ReissueService reissueService;
+    private final ReissueService reissueService;
     private final AdminSignupService adminSignupService;
     private final MyPetitionService myPetitionService;
     private final CheckDuplicationService checkDuplicationService;

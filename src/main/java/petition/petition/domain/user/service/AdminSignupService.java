@@ -45,9 +45,8 @@ public class AdminSignupService {
                         .build()
         );
 
-        return TokenResponse.builder()
-                .accessToken(jwtTokenProvider.createAccessToken(request.getAccountId()))
-                .build();
+        TokenResponse token = jwtTokenProvider.createToken(request.getAccountId());
+        return token;
     }
 }
 
