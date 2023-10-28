@@ -2,6 +2,7 @@ package petition.petition.domain.user.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.user.domain.User;
@@ -18,6 +19,7 @@ public class UserSignupService {
 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public TokenResponse signUp(SignupRequest request) {
@@ -26,11 +28,13 @@ public class UserSignupService {
             throw UserAlreadyExistException.EXCEPTION;
         }
 
+        String password = passwordEncoder.encode(request.getPassword());
+
         userRepository.save(
                 User.builder()
                         .accountId(request.getAccountId())
                         .userName(request.getUserName())
-                        .password(request.getPassword())
+                        .password(password)
                         .role(Role.STUDENT)
                         .build()
         );
