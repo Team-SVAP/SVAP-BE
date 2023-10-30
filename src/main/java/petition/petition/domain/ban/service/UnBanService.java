@@ -7,7 +7,7 @@ import petition.petition.domain.ban.domain.Ban;
 import petition.petition.domain.ban.domain.repository.BanRepository;
 import petition.petition.domain.ban.exception.BanNotFoundException;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 
 @Service
 @RequiredArgsConstructor

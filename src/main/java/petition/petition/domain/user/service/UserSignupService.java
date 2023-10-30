@@ -9,6 +9,7 @@ import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.domain.type.Role;
 import petition.petition.domain.user.exception.UserAlreadyExistException;
+import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.user.presentation.dto.request.SignupRequest;
 import petition.petition.global.security.TokenResponse;
 import petition.petition.global.security.jwt.JwtTokenProvider;
@@ -20,13 +21,12 @@ public class UserSignupService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
+    private final UserFacade userFacade;
 
     @Transactional
     public TokenResponse signUp(SignupRequest request) {
 
-        if (userRepository.existsByAccountId(request.getAccountId())) {
-            throw UserAlreadyExistException.EXCEPTION;
-        }
+        userFacade.checkUserExists(request.getAccountId());
 
         String password = passwordEncoder.encode(request.getPassword());
 

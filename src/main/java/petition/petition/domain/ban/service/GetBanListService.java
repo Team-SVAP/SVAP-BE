@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.ban.domain.repository.BanRepository;
 import petition.petition.domain.ban.presentation.dto.response.BanListResponse;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.List;
 import java.util.stream.Collectors;

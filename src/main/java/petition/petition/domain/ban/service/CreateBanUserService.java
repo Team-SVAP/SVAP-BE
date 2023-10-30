@@ -9,11 +9,9 @@ import petition.petition.domain.ban.presentation.dto.request.BanRequest;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.exception.UserNotFoundException;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor

@@ -9,7 +9,7 @@ import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.presentation.dto.request.CreatePetitionRequest;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.infra.service.S3Service;
 
 import java.time.LocalDate;

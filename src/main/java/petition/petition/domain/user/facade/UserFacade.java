@@ -1,4 +1,4 @@
-package petition.petition.domain.user.service.facade;
+package petition.petition.domain.user.facade;
 
 
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
+import petition.petition.domain.user.exception.UserAlreadyExistException;
 import petition.petition.domain.user.exception.UserNotFoundException;
 
 @RequiredArgsConstructor
@@ -18,6 +19,12 @@ public class UserFacade {
         return userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
+    }
+
+    public void checkUserExists(String accountId) {
+        if (userRepository.findByAccountId(accountId).isPresent()) {
+            throw UserAlreadyExistException.EXCEPTION;
+        }
     }
 
 }

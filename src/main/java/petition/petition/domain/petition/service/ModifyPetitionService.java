@@ -9,7 +9,7 @@ import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.petition.presentation.dto.request.ModifyPetitionRequest;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.exception.WriterMisMatchedException;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;
 

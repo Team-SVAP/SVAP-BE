@@ -8,7 +8,7 @@ import petition.petition.domain.report.domain.Report;
 import petition.petition.domain.report.domain.repository.ReportRepository;
 import petition.petition.domain.report.presentation.dto.response.ReportListResponse;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.Comparator;
 import java.util.List;

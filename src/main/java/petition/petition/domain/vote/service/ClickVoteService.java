@@ -8,7 +8,7 @@ import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.service.facade.UserFacade;
+import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.vote.domain.Vote;
 import petition.petition.domain.vote.domain.repository.VoteRepository;
 
