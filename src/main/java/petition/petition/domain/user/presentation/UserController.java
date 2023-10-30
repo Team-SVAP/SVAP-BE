@@ -45,13 +45,12 @@ public class UserController {
     public TokenResponse login(@RequestBody @Valid LoginRequest request) {
         return loginService.login(request);
     }
-
-    /*
+    
     @PostMapping("/reissue")
     @ResponseStatus(HttpStatus.CREATED)
     public TokenResponse reissue(@RequestHeader(name = "AUTHORIZATION_HEADER") String refreshToken) {
         return reissueService.reissue(refreshToken);
-    }*/
+    }
 
     @GetMapping
     public List<PetitionListResponse> myPetition() {
