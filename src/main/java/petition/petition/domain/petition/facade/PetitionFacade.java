@@ -12,7 +12,7 @@ public class PetitionFacade {
 
     private final PetitionRepository petitionRepository;
 
-    public Petition getCurrentPetition(Long petitionId) {
+    public Petition findPetition(Long petitionId) {
         return petitionRepository.findById(petitionId).orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
     }

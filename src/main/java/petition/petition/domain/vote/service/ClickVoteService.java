@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
+import petition.petition.domain.petition.facade.PetitionFacade;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.vote.domain.Vote;
@@ -20,15 +21,13 @@ public class ClickVoteService {
 
     private final VoteRepository voteRepository;
     private final UserFacade userFacade;
-    private final PetitionRepository petitionRepository;
+    private final PetitionFacade petitionFacade;
 
     public void clickVote(Long petitionId) {
 
         User currentUser = userFacade.getCurrentUser();
 
-        Petition petition = petitionRepository.findById(petitionId)
-                .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
-
+        Petition petition = petitionFacade.findPetition(petitionId);
 
         if(voteRepository.existsByUserAndPetition(currentUser, petition)) {
 
