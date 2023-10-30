@@ -28,9 +28,7 @@ public class GetReportListService {
 
         User currentUser = userFacade.getCurrentUser();
 
-        if (currentUser.getRole() != ADMIN) {
-            throw NotAdminException.EXCEPTION;
-        }
+        userFacade.checkAdmin(currentUser);
 
         List<Report> reports = reportRepository.findAll();
 
