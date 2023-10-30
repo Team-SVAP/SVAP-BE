@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.exception.IdAlreadyExistsException;
-import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.user.presentation.dto.request.CheckDuplicationRequest;
 
 @Service

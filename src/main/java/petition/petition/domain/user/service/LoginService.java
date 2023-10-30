@@ -38,8 +38,7 @@ public class LoginService {
             throw PasswordMismatchException.EXCEPTION;
         }
 
-        TokenResponse token = jwtTokenProvider.createToken(user.getAccountId());
-        return token;
+        return jwtTokenProvider.createToken(user.getAccountId());
     }
 
 }

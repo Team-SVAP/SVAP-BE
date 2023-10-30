@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.domain.type.Role;
-import petition.petition.domain.user.exception.CodeMisMatchException;
-import petition.petition.domain.user.exception.UserAlreadyExistException;
 import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
 import petition.petition.global.security.TokenResponse;
@@ -42,8 +40,7 @@ public class AdminSignupService {
                         .build()
         );
 
-        TokenResponse token = jwtTokenProvider.createToken(request.getAccountId());
-        return token;
+        return jwtTokenProvider.createToken(request.getAccountId());
     }
 }
 
