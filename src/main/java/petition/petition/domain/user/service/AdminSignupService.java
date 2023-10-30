@@ -9,6 +9,7 @@ import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.domain.type.Role;
 import petition.petition.domain.user.exception.CodeMisMatchException;
 import petition.petition.domain.user.exception.UserAlreadyExistException;
+import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
 import petition.petition.global.security.TokenResponse;
 import petition.petition.global.security.jwt.JwtTokenProvider;
@@ -21,18 +22,14 @@ public class AdminSignupService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-
+    private final UserFacade userFacade;
 
     @Transactional
     public TokenResponse signUp(AdminSignupRequest request) {
 
-        if (userRepository.existsByAccountId(request.getAccountId())) {
-            throw UserAlreadyExistException.EXCEPTION;
-        }
+        userFacade.checkUserExists(request.getAccountId());
 
-        if (!request.getCode().equals("daemago")) {
-            throw CodeMisMatchException.EXCEPTION;
-        }
+        userFacade.checkCodeCorrect(request.getCode());
 
         String password = passwordEncoder.encode(request.getPassword());
 
