@@ -25,21 +25,4 @@ public class UserFacade {
 
     }
 
-    public void checkUserExists(String accountId) {
-        if (userRepository.findByAccountId(accountId).isPresent()) {
-            throw UserAlreadyExistException.EXCEPTION;
-        }
-    }
-
-    public void checkCodeCorrect(String code) {
-        if (!code.equals("daemago")) {
-            throw CodeMisMatchException.EXCEPTION;
-        }
-    }
-
-    public void checkAdmin(User user) {
-        if (user.getRole() != ADMIN) {
-            throw NotAdminException.EXCEPTION;
-        }
-    }
 }

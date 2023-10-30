@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.domain.type.Role;
+import petition.petition.domain.user.exception.CodeMisMatchException;
+import petition.petition.domain.user.exception.UserAlreadyExistException;
 import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.user.presentation.dto.request.AdminSignupRequest;
 import petition.petition.global.security.TokenResponse;
@@ -25,9 +27,13 @@ public class AdminSignupService {
     @Transactional
     public TokenResponse signUp(AdminSignupRequest request) {
 
-        userFacade.checkUserExists(request.getAccountId());
+        if (userRepository.existsByAccountId(request.getAccountId())) {
+            throw UserAlreadyExistException.EXCEPTION;
+        }
 
-        userFacade.checkCodeCorrect(request.getCode());
+        if (!request.getCode().equals("daemago")) {
+            throw CodeMisMatchException.EXCEPTION;
+        }
 
         String password = passwordEncoder.encode(request.getPassword());
 
