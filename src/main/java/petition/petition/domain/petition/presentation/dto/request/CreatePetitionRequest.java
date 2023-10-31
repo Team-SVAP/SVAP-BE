@@ -7,6 +7,7 @@ import petition.petition.domain.petition.domain.types.Types;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,9 +22,12 @@ public class CreatePetitionRequest {
     private String content;
 
     @NotNull(message = "타입을 입력하세요")
+
     private Types types;
 
     @Size(min = 1, max = 10, message = "아이디는 최소 5자, 최대 10자 입니다.")
     private String location;
 
+    private List<String> imageUrl;
 }
+

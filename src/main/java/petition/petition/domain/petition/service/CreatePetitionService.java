@@ -24,32 +24,8 @@ public class CreatePetitionService {
     private final UserFacade userFacade;
     private final S3Service s3Service;
 
-    public void createImagePetition(CreatePetitionRequest request, List<MultipartFile> multipartFiles) {
-
-        User currentUser = userFacade.getCurrentUser();
-
-        List<String> imgList = s3Service.uploadImages(multipartFiles);
-
-        LocalDate dateTime = LocalDate.now();
-
-        Petition petition = petitionRepository.save(
-                Petition.builder()
-                        .user(currentUser)
-                        .title(request.getTitle())
-                        .content(request.getContent())
-                        .accessTypes(AccessTypes.NORMAL)
-                        .types(request.getTypes())
-                        .location(request.getLocation())
-                        .imgList(imgList)
-                        .dateTime(dateTime)
-                        .build()
-        );
-
-        petitionRepository.save(petition);
-
-    }
-
     public void createPetition(CreatePetitionRequest request) {
+
         User currentUser = userFacade.getCurrentUser();
 
         LocalDate dateTime = LocalDate.now();
@@ -61,6 +37,7 @@ public class CreatePetitionService {
                         .content(request.getContent())
                         .accessTypes(AccessTypes.NORMAL)
                         .types(request.getTypes())
+                        .imgList(request.getImageUrlLIst())
                         .location(request.getLocation())
                         .dateTime(dateTime)
                         .build()

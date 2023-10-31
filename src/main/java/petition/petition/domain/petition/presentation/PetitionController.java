@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.petition.presentation.dto.request.*;
+import petition.petition.domain.petition.presentation.dto.response.ImageUrlResponse;
 import petition.petition.domain.petition.presentation.dto.response.PetitionResponse;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 import petition.petition.domain.petition.service.*;
@@ -36,18 +37,18 @@ public class PetitionController {
     private final ChangeAccessService changeAccessService;
     private final ChangeNormalService changeNormalService;
     private final GetPopularPetitionService getPopularPetitionService;
+    private final CreateImageService createImageService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createPetition(@RequestPart("content") CreatePetitionRequest request,
-                               @RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles)
-    {
-        if (multipartFiles == null) {
+    public void createPetition(@RequestBody @Valid CreatePetitionRequest request) {
             createPetitionService.createPetition(request);
-        }
-        else {
-            createPetitionService.createImagePetition(request, multipartFiles);
-        }
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("image")
+    public ImageUrlResponse createImage(@RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles) {
+        return createImageService.createImage(multipartFiles);
     }
 
     @PatchMapping("/{petitionId}")
