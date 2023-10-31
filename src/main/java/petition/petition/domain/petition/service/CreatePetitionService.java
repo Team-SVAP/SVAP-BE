@@ -37,7 +37,7 @@ public class CreatePetitionService {
                         .content(request.getContent())
                         .accessTypes(AccessTypes.NORMAL)
                         .types(request.getTypes())
-                        .imgList(request.getImageUrlLIst())
+                        .imgList(request.getImageUrl())
                         .location(request.getLocation())
                         .dateTime(dateTime)
                         .build()
