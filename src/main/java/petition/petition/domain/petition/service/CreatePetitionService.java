@@ -3,17 +3,14 @@ package petition.petition.domain.petition.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.presentation.dto.request.CreatePetitionRequest;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.facade.UserFacade;
-import petition.petition.infra.service.S3Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +19,6 @@ public class CreatePetitionService {
 
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
-    private final S3Service s3Service;
 
     public void createPetition(CreatePetitionRequest request) {
 
