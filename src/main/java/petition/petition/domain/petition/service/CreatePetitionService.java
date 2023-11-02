@@ -26,7 +26,7 @@ public class CreatePetitionService {
 
         LocalDate dateTime = LocalDate.now();
 
-        Petition petition = petitionRepository.save(
+        petitionRepository.save(
                 Petition.builder()
                         .user(currentUser)
                         .title(request.getTitle())
@@ -36,10 +36,7 @@ public class CreatePetitionService {
                         .imgList(request.getImageUrl())
                         .location(request.getLocation())
                         .dateTime(dateTime)
-                        .build()
-        );
-
-        petitionRepository.save(petition);
-
+                        .build());
     }
+
 }

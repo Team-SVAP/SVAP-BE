@@ -46,7 +46,7 @@ public class PetitionController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("image")
+    @PostMapping("/image")
     public ImageUrlResponse createImage(@RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles) {
         return createImageService.createImage(multipartFiles);
     }
