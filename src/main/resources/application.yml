@@ -31,9 +31,9 @@ spring:
 jwt:
   header: ${HEADER:Authorization}
   prefix : ${PREFIX:Bearer}
-  secret-key: ${JWT_SECRET_KEY:dfhasjkdfhayffhdtyhdhydshghjkdfaskverafter}
-  access-exp: ${JWT_ACCESS_EXP:10000}
-  refresh-exp: ${JWT_REFRESH_EXP:604800}
+  secret-key: ${JWT_SECRET_KEY:HudYB&d-kl}
+  accessExp: ${JWT_ACCESS_EXP:3600}
+  refreshExp: ${JWT_REFRESH_EXP:4800}
 
 
 logging:
@@ -48,8 +48,8 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS-KEY:AKIA472XLIA4MZWDJ2YB}      # AWS IAM AccessKey 적기
-      secretKey: ${SECRET-KEY:r21g2LMb65thGTlzJOxgdneVp/KFXsQG2VudNJkP}   # AWS IAM SecretKey 적기
+      accessKey: ${ACCESS-KEY:AKIA472XLIA4MZWDJ2YB}
+      secretKey: ${SECRET-KEY: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}
     s3:
       bucket: ${BUCKET:kangsunbucket}
     region:
