@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import petition.petition.domain.auth.RefreshToken;
 import petition.petition.domain.auth.RefreshTokenRepository;
 import petition.petition.global.exception.ExpiredTokenException;
@@ -84,9 +85,15 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    // Request의 Header에서 token 값을 가져옵니다. "Authorization" : "TOKEN값'
-    public String resolveToken(HttpServletRequest request) {
-        return request.getHeader("Authorization");
+    public String resolveToken(HttpServletRequest request){
+
+        String bearerToken = request.getHeader(jwtProperties.getHeader());
+
+        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(jwtProperties.getPrefix())
+                && bearerToken.length() > jwtProperties.getPrefix().length()+1){
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 
     // 토큰의 유효성 + 만료일자 확인
