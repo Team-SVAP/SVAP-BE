@@ -19,7 +19,7 @@ public class AuthDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String accountId) {
 
-        User user = userRepository.findByAccountId(accountId)//그냥 유저 없으면 오류 발생
+        User user = userRepository.findByAccountId(accountId)
                 .orElseThrow(()-> UserNotFoundException.EXCEPTION);
 
         return new AuthDetails(user.getAccountId());

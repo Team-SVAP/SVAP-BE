@@ -129,7 +129,6 @@ public class JwtTokenProvider {
 
     }
 
-
     public TokenResponse reissue(String refreshToken) {
 
         if(!isRefreshToken(refreshToken))
@@ -137,11 +136,10 @@ public class JwtTokenProvider {
 
         String accountId = getId(refreshToken);
 
-        return TokenResponse.builder()//access토큰은 다시 만들어서 반환하고 리프레쉬는 안만든다
+        return TokenResponse.builder()
                 .accessToken(createAccessToken(accountId))
                 .refreshToken(refreshToken)
                 .build();
     }
-
 
 }
