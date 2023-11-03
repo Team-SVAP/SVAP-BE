@@ -30,12 +30,6 @@ public class JwtTokenProvider {
     private final RefreshTokenRepository refreshTokenRepository;
     private final UserDetailsService userDetailsService;
 
-    /*
-    @PostConstruct
-    protected void init() {
-        accessSecretKey = Base64.getEncoder().encodeToString(accessSecretKey.getBytes());
-    }*/
-
 
     public TokenResponse createToken(String accountId) {
         return TokenResponse
