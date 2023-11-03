@@ -13,9 +13,7 @@ import petition.petition.global.exception.ExpiredTokenException;
 import petition.petition.global.exception.InvalidTokenException;
 import petition.petition.global.security.TokenResponse;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Base64;
 import java.util.Date;
 
 
@@ -23,13 +21,9 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private String SecretKey = "secret_key";
-
-
     private final JwtProperties jwtProperties;
     private final RefreshTokenRepository refreshTokenRepository;
     private final UserDetailsService userDetailsService;
-
 
     public TokenResponse createToken(String accountId) {
         return TokenResponse
@@ -43,14 +37,13 @@ public class JwtTokenProvider {
     public String createAccessToken(String accountId) {
         Claims claims = Jwts.claims().setSubject(accountId); // JWT payload 에 저장되는 정보단위, 보통 여기서 user를 식별하는 값을 넣는다.
         Date now = new Date();
-        String accessToken = Jwts.builder()
+        return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
                 .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExp() * 1000)) // set Expire Time
-                .signWith(SignatureAlgorithm.HS256, SecretKey)  // 사용할 암호화 알고리즘과
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
 
-        return accessToken;
     }
 
 
@@ -63,7 +56,7 @@ public class JwtTokenProvider {
                 .claim("type", "refresh")
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + jwtProperties.getRefreshExp() * 1000))//만료시간은
-                .signWith(SignatureAlgorithm.HS512, SecretKey)
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecretKey())
                 .compact();
 
         refreshTokenRepository.save(
@@ -85,7 +78,7 @@ public class JwtTokenProvider {
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
         return Jwts.parser()
-                .setSigningKey(SecretKey)
+                .setSigningKey(jwtProperties.getSecretKey())
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
@@ -99,7 +92,7 @@ public class JwtTokenProvider {
     // 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(SecretKey).parseClaimsJws(jwtToken);
+            Jws<Claims> claims = Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(jwtToken);
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
             return false;
@@ -114,7 +107,7 @@ public class JwtTokenProvider {
         try {
             return Jwts
                     .parser()
-                    .setSigningKey(SecretKey)
+                    .setSigningKey(jwtProperties.getSecretKey())
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
