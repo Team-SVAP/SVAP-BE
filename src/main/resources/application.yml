@@ -2,9 +2,9 @@ spring:
   main:
     allow-bean-definition-overriding : true
   datasource:
-    url: ${URL:jdbc:mysql://15.164.62.45:3306/svap}
-    username: ${USERNAME:root}
-    password: ${PASSWORD:070211}
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -45,12 +45,12 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS-KEY:AKIA472XLIA4MZWDJ2YB}
-      secretKey: ${SECRET-KEY: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}
+      accessKey: ${ACCESS-KEY}
+      secretKey: ${SECRET-KEY}
     s3:
-      bucket: ${BUCKET:kangsunbucket}
+      bucket: ${BUCKET}
     region:
-      static: ${STATIC:ap-northeast-2}
+      static: ${STATIC}
 
   stack:
     auto: false

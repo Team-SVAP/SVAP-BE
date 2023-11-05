@@ -47,7 +47,6 @@ public class JwtTokenProvider {
 
     }
 
-
     private String createRefreshToken(String accountId) {
 
         Date now = new Date();

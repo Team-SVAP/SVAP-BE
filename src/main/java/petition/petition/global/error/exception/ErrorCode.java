@@ -18,7 +18,7 @@ public enum ErrorCode { //에러 코드는 Enum으로 관리
     USER_ALREADY_EXISTS(409,"User already exists"),
     PASSWORD_MISMATCH(403,"Password mismatch"),
     WRITER_MISMATCH(403, "Writer mismatch"),
-    ID_ALREADY_EXISTS(409, "AccountId already exists"),
+    ACCOUNT_ID_ALREADY_EXISTS(409, "AccountId already exists"),
 
     //admin
     CODE_MISMATCH(404,"Code mismatch"),
