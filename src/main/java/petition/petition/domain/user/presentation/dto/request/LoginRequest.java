@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 public class LoginRequest {
 
     @NotBlank(message = "아이디 입력하세요")
-    @Size(min = 5, max = 20, message = "아이디는 최소 5자, 최대 20자 입니다.")
+    @Size(min = 8, max = 30, message = "아이디는 최소 8자, 최대 30자 입니다.")
     private String accountId;
 
     @NotBlank(message = "password는 Null 또는 공백 또는 띄어쓰기를 허용하지 않습니다.")

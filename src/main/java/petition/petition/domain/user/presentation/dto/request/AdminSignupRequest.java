@@ -16,7 +16,7 @@ public class AdminSignupRequest {
     @Size(min = 2, max = 5, message = "이름은 최소 2자, 최대 5자 입니다.")
     private String userName;
 
-    @Size(min = 5, max = 15, message = "아이디는 최소 5자, 최대 15자 입니다.")
+    @Size(min = 8, max = 30, message = "아이디는 최소 8자, 최대 30자 입니다.")
     private String accountId;
 
     @NotBlank(message = "password는 Null 또는 공백 또는 띄어쓰기를 허용하지 않습니다.")
