@@ -1,0 +1,23 @@
+package petition.petition.domain.user.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import petition.petition.domain.user.domain.repository.UserRepository;
+import petition.petition.domain.user.exception.AccountIdAlreadyExistsException;
+import petition.petition.domain.user.presentation.dto.request.CheckAccountIdRequest;
+import petition.petition.domain.user.presentation.dto.request.CheckUsernameRequest;
+
+@Service
+@RequiredArgsConstructor
+public class CheckAccountIdService {
+
+    private final UserRepository userRepository;
+
+    public void checkAccountId(CheckAccountIdRequest request) {
+
+        if (userRepository.existsByAccountId(request.getAccountId())) {
+            throw AccountIdAlreadyExistsException.EXCEPTION;
+        }
+
+    }
+}

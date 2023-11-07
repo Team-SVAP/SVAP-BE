@@ -7,9 +7,9 @@ import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @Getter
-public class CheckDuplicationRequest {
+public class CheckUsernameRequest {
 
-    @Size(min = 5, max = 20, message = "아이디는 최소 5자, 최대 20자 입니다.")
-    private String accountId;
+    @Size(min = 2, max = 5, message = "이름은 최소 2자, 최대 5자 입니다.")
+    private String username;
 
 }
