@@ -39,6 +39,13 @@ dependencies {
 	//비밀번호 암호화
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	//queryDSL
+	implementation 'com.querydsl:querydsl-jpa'
+	annotationProcessor(
+			"javax.persistence:javax.persistence-api",
+			"javax.annotation:javax.annotation-api",
+			"com.querydsl:querydsl-apt:5.0.0:jpa")
+
 	//기본
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
