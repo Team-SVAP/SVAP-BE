@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.petition.presentation.dto.request.*;
 import petition.petition.domain.petition.presentation.dto.response.ImageUrlResponse;
@@ -26,12 +27,8 @@ public class PetitionController {
     private final RecentPetitionService recentPetitionService;
     private final GetPetitionService getPetitionService;
     private final RecentAllPetitionService recentAllPetitionService;
-    private final AccessedAllPetitionService accessedAllPetitionService;
-    private final AccessedPetitionService accessedPetitionService;
-    private final WaitingAllPetitionService waitingAllPetitionService;
-    private final WaitingPetitionService waitingPetitionService;
-    private final VoteAllPetitionService voteAllPetitionService;
-    private final VotePetitionService votePetitionService;
+    private final AllSortedPetitionService allSortedPetitionService;
+    private final GetSortedPetitionService getSortedPetitionService;
     private final SearchPetitionService searchPetitionService;
     private final ChangeWaitingService changeWaitingService;
     private final ChangeAccessService changeAccessService;
@@ -86,34 +83,14 @@ public class PetitionController {
         return recentAllPetitionService.allRecent();
     }
 
-    @GetMapping("/access/{type}")
-    public List<PetitionListResponse> getAccessed(@PathVariable Types type) {
-        return accessedPetitionService.getAccessed(type);
+    @GetMapping("/{type}/{accessTypes}")
+    public List<PetitionListResponse> getSortedPetition(@PathVariable Types type, @PathVariable AccessTypes accessTypes) {
+        return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 
-    @GetMapping("/access-all")
-    public List<PetitionListResponse> allAccessed() {
-        return accessedAllPetitionService.allAccessed();
-    }
-
-    @GetMapping("/wait/{type}")
-    public List<PetitionListResponse> getWaiting(@PathVariable Types type) {
-        return waitingPetitionService.getWaiting(type);
-    }
-
-    @GetMapping("/wait-all")
-    public List<PetitionListResponse> allWaiting() {
-        return waitingAllPetitionService.allWaiting();
-    }
-
-    @GetMapping("/vote/{type}")
-    public List<PetitionListResponse> getVote(@PathVariable Types type) {
-        return votePetitionService.getVote(type);
-    }
-
-    @GetMapping("/vote-all")
-    public List<PetitionListResponse> allVote() {
-        return voteAllPetitionService.allVote();
+    @GetMapping("/{accessTypes}")
+    public List<PetitionListResponse> allSortedPetitionService(@PathVariable AccessTypes accessTypes) {
+        return allSortedPetitionService.allSortedPetition(accessTypes);
     }
 
     @PatchMapping("/normal/{petitionId}")
