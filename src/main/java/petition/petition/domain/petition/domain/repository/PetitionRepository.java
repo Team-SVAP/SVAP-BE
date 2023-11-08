@@ -17,9 +17,6 @@ public interface PetitionRepository extends JpaRepository<Petition, Long> {
     //특정 타입 청원 조회
     List<Petition> findAllByTypesAndAccessTypesOrderByDateTimeDesc(Types types, AccessTypes accessTypes);
 
-    //투표순으로 청원 조회
-    List<Petition> findAllByTypes(Types types);
-
     //내 청원 보기
     List<Petition> findAllByUser(User user);
 
@@ -29,5 +26,6 @@ public interface PetitionRepository extends JpaRepository<Petition, Long> {
     //인기 청원 보기
     Optional<Petition> findTopByOrderByViewCountsDesc();
 
+    //전체 청원 + AccessTypes
     List<Petition> findAllByAccessTypesOrderByDateTimeDesc(AccessTypes accessTypes);
 }
