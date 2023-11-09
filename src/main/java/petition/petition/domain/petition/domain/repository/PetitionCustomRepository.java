@@ -12,5 +12,5 @@ public interface PetitionCustomRepository {
     List<Petition> queryPetitionByTypesAndAccessTypes(Types types, AccessTypes accessTypes);
 
     List<Petition> queryPetitionByAccessTypes(AccessTypes accessTypes);
-    
+
 }

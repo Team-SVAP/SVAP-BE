@@ -46,6 +46,7 @@ dependencies {
 			"javax.annotation:javax.annotation-api",
 			"com.querydsl:querydsl-apt:5.0.0:jpa")
 
+
 	//기본
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -57,6 +58,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
+
 
 
 jar {
