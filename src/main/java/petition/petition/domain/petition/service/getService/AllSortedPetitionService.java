@@ -17,11 +17,10 @@ import java.util.stream.Collectors;
 public class AllSortedPetitionService {
 
     private final PetitionRepository petitionRepository;
-    private final UserFacade userFacade;
 
     public List<PetitionListResponse> allSortedPetition(AccessTypes accessTypes) {
 
-        return petitionRepository.findAllByAccessTypesOrderByDateTimeDesc(accessTypes)
+        return petitionRepository.queryPetitionByAccessTypes(accessTypes)
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());

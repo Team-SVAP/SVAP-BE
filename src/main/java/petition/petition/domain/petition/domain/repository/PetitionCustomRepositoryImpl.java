@@ -32,5 +32,4 @@ public class PetitionCustomRepositoryImpl implements PetitionCustomRepository{
                 .fetch();
     }
 
-
 }

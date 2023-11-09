@@ -7,7 +7,6 @@ import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
-import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,11 +16,10 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class RecentPetitionService {
     private final PetitionRepository petitionRepository;
-    private final UserFacade userFacade;
 
     public List<PetitionListResponse> getRecent(Types type) {
 
-        return petitionRepository.findAllByTypesAndAccessTypesOrderByDateTimeDesc(type, AccessTypes.NORMAL)
+        return petitionRepository.queryPetitionByTypesAndAccessTypes(type, AccessTypes.NORMAL)
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());

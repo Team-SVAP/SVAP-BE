@@ -7,7 +7,6 @@ import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
-import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ public class GetSortedPetitionService {
 
     public List<PetitionListResponse> getSortedPetition(Types type, AccessTypes accessTypes) {
 
-        return petitionRepository.findAllByTypesAndAccessTypesOrderByDateTimeDesc(type, accessTypes)
+        return petitionRepository.queryPetitionByTypesAndAccessTypes(type, accessTypes)
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
