@@ -71,6 +71,7 @@ public class JwtTokenProvider {
 
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
+        if (!isNotRefreshToken(token)) throw InvalidTokenException.EXCEPTION;
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
@@ -123,14 +124,14 @@ public class JwtTokenProvider {
         }
     }
 
-    private boolean isRefreshToken(String token) {
-        return getClaims(token).get("type").equals("refresh");
-
+    private boolean isNotRefreshToken(String token) {
+        Claims claims = getClaims(token);
+        return claims == null || !claims.containsKey("type") || !"refresh".equals(claims.get("type"));
     }
 
     public TokenResponse reissue(String refreshToken) {
 
-        if(!isRefreshToken(refreshToken))
+        if(isNotRefreshToken(refreshToken))
             throw InvalidTokenException.EXCEPTION;
 
         String accountId = getId(refreshToken);
