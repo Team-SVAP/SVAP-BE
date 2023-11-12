@@ -16,11 +16,7 @@ public class MyInfoService {
 
         User currentUser = userFacade.getCurrentUser();
 
-        return MyInfoResponse.builder()
-                .userName(currentUser.getUserName())
-                .role(currentUser.getRole())
-                .accountId(currentUser.getAccountId())
-                .build();
+        return new MyInfoResponse(currentUser);
 
     }
 
