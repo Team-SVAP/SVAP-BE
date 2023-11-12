@@ -69,13 +69,13 @@ public class UserController {
 
     }
 
-    @PostMapping("/ck-username-id")
+    @PostMapping("/ck-username")
     public void checkUsername(@RequestBody @Valid CheckUsernameRequest request) {
         checkUsernameService.checkUsername(request);
 
     }
 
-    @PostMapping("/ck-password-id")
+    @PostMapping("/ck-password")
     public void checkPassword(@RequestBody @Valid CheckPasswordRequest request) {
         checkPasswordService.checkPassword(request);
 

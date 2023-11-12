@@ -24,9 +24,9 @@ public class PetitionController {
     private final CreatePetitionService createPetitionService;
     private final ModifyPetitionService modifyPetitionService;
     private final DeletePetitionService deletePetitionService;
-    private final RecentPetitionService recentPetitionService;
+    private final VotePetitionService votePetitionService;
     private final GetPetitionService getPetitionService;
-    private final RecentAllPetitionService recentAllPetitionService;
+    private final VoteAllPetitionService voteAllPetitionService;
     private final AllSortedPetitionService allSortedPetitionService;
     private final GetSortedPetitionService getSortedPetitionService;
     private final SearchPetitionService searchPetitionService;
@@ -73,22 +73,22 @@ public class PetitionController {
         return searchPetitionService.search(request);
     }
 
-    @GetMapping("/recent/{type}")
-    public List<PetitionListResponse> getRecent(@PathVariable Types type) {
-        return recentPetitionService.getRecent(type);
+    @GetMapping("/vote/{type}")
+    public List<PetitionListResponse> getVote(@PathVariable Types type) {
+        return votePetitionService.getVote(type);
     }
 
-    @GetMapping("/recent-all")
-    public List<PetitionListResponse> allRecent() {
-        return recentAllPetitionService.allRecent();
+    @GetMapping("/vote-all")
+    public List<PetitionListResponse> allVote() {
+        return voteAllPetitionService.allVote();
     }
 
-    @GetMapping("/{type}/{accessTypes}")
+    @GetMapping("/sort/{type}/{accessTypes}")
     public List<PetitionListResponse> getSortedPetition(@PathVariable Types type, @PathVariable AccessTypes accessTypes) {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 
-    @GetMapping("/{accessTypes}")
+    @GetMapping("/sort-all/{accessTypes}")
     public List<PetitionListResponse> allSortedPetitionService(@PathVariable AccessTypes accessTypes) {
         return allSortedPetitionService.allSortedPetition(accessTypes);
     }

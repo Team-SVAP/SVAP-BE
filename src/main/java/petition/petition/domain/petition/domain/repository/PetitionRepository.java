@@ -14,6 +14,10 @@ public interface PetitionRepository extends JpaRepository<Petition, Long>, Petit
     //모든 청원 조회 (남겨)
     List<Petition> findAllByOrderByDateTimeDesc();
 
+    List<Petition> findAllByTypesOrderByVoteCountsDesc(Types types);
+
+    List<Petition> findAllByOrderByVoteCountsDesc();
+
     //내 청원 보기 (남겨)
     List<Petition> findAllByUser(User user);
 
