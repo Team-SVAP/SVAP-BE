@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class RecentAllPetitionService {
+public class VoteAllPetitionService {
 
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> allRecent() {
+    public List<PetitionListResponse> allVote() {
 
-        return petitionRepository.findAllByOrderByDateTimeDesc()
+        return petitionRepository.findAllByOrderByVoteCountsDesc()
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());

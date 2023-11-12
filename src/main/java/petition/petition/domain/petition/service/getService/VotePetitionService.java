@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class RecentPetitionService {
+public class VotePetitionService {
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> getRecent(Types type) {
+    public List<PetitionListResponse> getVote(Types type) {
 
-        return petitionRepository.queryPetitionByTypesAndAccessTypes(type, AccessTypes.NORMAL)
+        return petitionRepository.findAllByTypesOrderByVoteCountsDesc(type)
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
