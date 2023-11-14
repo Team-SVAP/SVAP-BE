@@ -22,7 +22,6 @@ public class AdminSignupService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserFacade userFacade;
 
     @Transactional
     public TokenResponse signUp(AdminSignupRequest request) {

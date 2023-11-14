@@ -19,7 +19,7 @@ public class User {
     @Column(columnDefinition = "varchar(5)", nullable = false)
     private String userName;
 
-    @Column(columnDefinition = "varchar(20)", nullable = false, unique = true)
+    @Column(columnDefinition = "varchar(30)", nullable = false, unique = true)
     private String accountId;
 
     @Column(nullable = false)
