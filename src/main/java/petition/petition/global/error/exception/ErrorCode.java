@@ -16,13 +16,13 @@ public enum ErrorCode { //에러 코드는 Enum으로 관리
     //user
     USER_NOT_FOUND(404,"User not found"),
     USER_ALREADY_EXISTS(409,"User already exists"),
-    PASSWORD_MISMATCH(403,"Password mismatch"),
-    WRITER_MISMATCH(401, "Writer mismatch"),
+    PASSWORD_MISMATCH(401,"Password mismatch"),
+    WRITER_MISMATCH(403, "Writer mismatch"),
     ACCOUNT_ID_ALREADY_EXISTS(409, "AccountId already exists"),
 
     //admin
     CODE_MISMATCH(404,"Code mismatch"),
-    NOT_ADMIN(403, "Not admin"),
+    NOT_ADMIN(401, "Not admin"),
 
     //petition
     PETITION_NOT_FOUND(404, "Petition not found"),
