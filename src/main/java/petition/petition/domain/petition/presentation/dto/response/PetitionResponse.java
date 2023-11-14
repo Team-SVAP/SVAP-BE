@@ -5,9 +5,11 @@ import lombok.Getter;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
+import petition.petition.domain.user.domain.User;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Builder
 @Getter
@@ -35,7 +37,9 @@ public class PetitionResponse {
 
     private List<String> imgUrl;
 
-    public static PetitionResponse of(Petition petition) {
+    private boolean isVoted;
+
+    public static PetitionResponse of(Petition petition, boolean isVoted) {
 
         return PetitionResponse.builder()
                 .id(petition.getId())
@@ -49,6 +53,7 @@ public class PetitionResponse {
                 .accountId(petition.getUser().getAccountId())
                 .dateTime(petition.getDateTime())
                 .imgUrl(petition.getImgList())
+                .isVoted(isVoted)
                 .build();
 
     }

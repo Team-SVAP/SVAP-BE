@@ -11,6 +11,8 @@ public interface VoteRepository extends CrudRepository<Vote, Long> {
 
     boolean existsByUserAndPetition(User user, Petition petition);
 
+    boolean existsByUserAndPetition(Optional<User> user, Petition petition);
+
     void deleteByUserAndPetition(User user, Petition petition);
 
 }
