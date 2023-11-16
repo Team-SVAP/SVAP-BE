@@ -69,22 +69,6 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
-    // JWT 토큰에서 인증 정보 조회
-    public Authentication getAuthentication(String token) {
-        if (!isNotRefreshToken(token)) throw InvalidTokenException.EXCEPTION;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-    }
-
-    // 토큰에서 회원 정보 추출
-    public String getUserPk(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtProperties.getSecretKey())
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
-
     public String resolveToken(HttpServletRequest request){
 
         String bearerToken = request.getHeader(jwtProperties.getHeader());
@@ -98,48 +82,13 @@ public class JwtTokenProvider {
 
     // 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
-        try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(jwtToken);
-            return !claims.getBody().getExpiration().before(new Date());
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private String getId(String token) {
-        return getClaims(token).getSubject();
-    }
-
-    private Claims getClaims(String token) {
-        try {
-            return Jwts
-                    .parser()
-                    .setSigningKey(jwtProperties.getSecretKey())
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (ExpiredJwtException e) {
+        Jws<Claims> claims = Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(jwtToken);
+        if (!claims.getBody().getExpiration().before(new Date())) {
+            return true;
+        } else {
             throw ExpiredTokenException.EXCEPTION;
-        } catch (Exception e) {
-            throw InvalidTokenException.EXCEPTION;
+
         }
-    }
-
-    private boolean isNotRefreshToken(String token) {
-        Claims claims = getClaims(token);
-        return claims == null || !claims.containsKey("type") || !"refresh".equals(claims.get("type"));
-    }
-
-    public TokenResponse reissue(String refreshToken) {
-
-        if(isNotRefreshToken(refreshToken))
-            throw InvalidTokenException.EXCEPTION;
-
-        String accountId = getId(refreshToken);
-
-        return TokenResponse.builder()
-                .accessToken(createAccessToken(accountId))
-                .refreshToken(refreshToken)
-                .build();
     }
 
 }
