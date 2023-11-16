@@ -22,7 +22,7 @@ public enum ErrorCode { //에러 코드는 Enum으로 관리
 
     //admin
     CODE_MISMATCH(404,"Code mismatch"),
-    NOT_ADMIN(401, "Not admin"),
+    NOT_ADMIN(403, "Not admin"),
 
     //petition
     PETITION_NOT_FOUND(404, "Petition not found"),
