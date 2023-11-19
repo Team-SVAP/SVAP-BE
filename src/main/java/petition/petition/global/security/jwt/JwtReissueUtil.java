@@ -2,12 +2,12 @@ package petition.petition.global.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.auth.RefreshToken;
@@ -15,6 +15,8 @@ import petition.petition.domain.auth.RefreshTokenRepository;
 import petition.petition.global.exception.ExpiredTokenException;
 import petition.petition.global.exception.InvalidTokenException;
 import petition.petition.global.security.TokenResponse;
+import petition.petition.global.security.auth.AuthDetailsService;
+
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +26,7 @@ public class JwtReissueUtil {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
-    private final UserDetailsService userDetailsService;
-
+    private final AuthDetailsService authDetailsService;
 
     public TokenResponse reissue(String refreshToken) {
 
@@ -54,7 +55,7 @@ public class JwtReissueUtil {
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
-        } catch (Exception e) {
+        } catch (JwtException e) {
             throw InvalidTokenException.EXCEPTION;
         }
     }
@@ -64,15 +65,14 @@ public class JwtReissueUtil {
         return claims == null || !claims.containsKey("type") || !"refresh".equals(claims.get("type"));
     }
 
-
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        if (!isNotRefreshToken(token)) throw InvalidTokenException.EXCEPTION;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        Claims claims = getClaims(token);
+        UserDetails userDetails = authDetailsService.loadUserByUsername(claims.getSubject());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-
+    /*
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
         return Jwts.parser()
@@ -80,5 +80,12 @@ public class JwtReissueUtil {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }*/
+
+    // 토큰에서 회원 정보 추출
+    public String getUserPk(String token) {
+        return getClaims(token).getSubject();
     }
+
 }
+

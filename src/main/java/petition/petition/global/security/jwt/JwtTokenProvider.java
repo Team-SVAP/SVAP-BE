@@ -2,16 +2,12 @@ package petition.petition.global.security.jwt;
 
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import petition.petition.domain.auth.RefreshToken;
 import petition.petition.domain.auth.RefreshTokenRepository;
+import petition.petition.domain.petition.exception.PasswordMismatchException;
 import petition.petition.global.exception.ExpiredTokenException;
-import petition.petition.global.exception.InvalidTokenException;
 import petition.petition.global.security.TokenResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +20,6 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final UserDetailsService userDetailsService;
 
     public TokenResponse createToken(String accountId) {
         return TokenResponse
@@ -69,26 +64,34 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
-    public String resolveToken(HttpServletRequest request){
+    public String resolveToken(HttpServletRequest request) {
 
         String bearerToken = request.getHeader(jwtProperties.getHeader());
 
-        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(jwtProperties.getPrefix())
-                && bearerToken.length() > jwtProperties.getPrefix().length()+1){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(jwtProperties.getPrefix())
+                && bearerToken.length() > jwtProperties.getPrefix().length() + 1) {
             return bearerToken.substring(7);
         }
         return null;
     }
 
-    // 토큰의 유효성 + 만료일자 확인
-    public boolean validateToken(String jwtToken) {
-        Jws<Claims> claims = Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(jwtToken);
-        if (!claims.getBody().getExpiration().before(new Date())) {
-            return true;
-        } else {
+    //토큰에서 회원 정보 추출
+    private Claims getBody(String token) {
+        try {
+            return Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(token).getBody();
+        } catch (ExpiredJwtException e) {
+            System.out.println("fsdfsfdsfsdfsdfdsfsd");
             throw ExpiredTokenException.EXCEPTION;
 
         }
     }
 
+    //만료일자 확인
+    public void validateToken(String jwtToken) {
+        Claims body = getBody(jwtToken);
+        System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddd");
+        if (body.getExpiration().before(new Date())) {
+            throw ExpiredTokenException.EXCEPTION;
+        }
+    }
 }

@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum ErrorCode { //에러 코드는 Enum으로 관리
+public enum ErrorCode {
 
     //jwt
     EXPIRED_TOKEN(401 , "Expired token"),
