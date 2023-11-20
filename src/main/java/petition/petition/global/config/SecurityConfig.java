@@ -20,7 +20,6 @@ import petition.petition.global.security.jwt.JwtTokenProvider;
 
 import java.util.Arrays;
 
-import static ch.qos.logback.classic.spi.ThrowableProxyVO.build;
 
 @RequiredArgsConstructor
 @EnableWebSecurity

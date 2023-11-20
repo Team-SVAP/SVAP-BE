@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.global.security.TokenResponse;
 import petition.petition.global.security.jwt.JwtReissueUtil;
-import petition.petition.global.security.jwt.JwtTokenProvider;
 
 @Service
 @RequiredArgsConstructor

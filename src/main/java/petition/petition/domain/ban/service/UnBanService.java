@@ -8,7 +8,6 @@ import petition.petition.domain.ban.domain.repository.BanRepository;
 import petition.petition.domain.ban.exception.BanNotFoundException;
 import petition.petition.domain.petition.exception.NotAdminException;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.domain.type.Role;
 import petition.petition.domain.user.facade.UserFacade;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;

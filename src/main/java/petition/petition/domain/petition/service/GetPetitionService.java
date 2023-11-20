@@ -8,7 +8,6 @@ import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.petition.presentation.dto.response.PetitionResponse;
 import petition.petition.domain.user.domain.User;
-import petition.petition.domain.user.domain.repository.UserRepository;
 import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.vote.domain.repository.VoteRepository;
 

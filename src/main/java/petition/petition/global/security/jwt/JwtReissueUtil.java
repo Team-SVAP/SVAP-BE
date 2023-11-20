@@ -72,20 +72,5 @@ public class JwtReissueUtil {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    /*
-    // 토큰에서 회원 정보 추출
-    public String getUserPk(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtProperties.getSecretKey())
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }*/
-
-    // 토큰에서 회원 정보 추출
-    public String getUserPk(String token) {
-        return getClaims(token).getSubject();
-    }
-
 }
 
