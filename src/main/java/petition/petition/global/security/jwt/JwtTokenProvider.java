@@ -79,7 +79,6 @@ public class JwtTokenProvider {
         try {
             return Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(token).getBody();
         } catch (ExpiredJwtException e) {
-            System.out.println("fsdfsfdsfsdfsdfdsfsd");
             throw ExpiredTokenException.EXCEPTION;
 
         }
@@ -88,7 +87,6 @@ public class JwtTokenProvider {
     //만료일자 확인
     public void validateToken(String jwtToken) {
         Claims body = getBody(jwtToken);
-        System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddd");
         if (body.getExpiration().before(new Date())) {
             throw ExpiredTokenException.EXCEPTION;
         }
