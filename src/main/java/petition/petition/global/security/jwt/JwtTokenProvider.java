@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import petition.petition.domain.auth.RefreshToken;
 import petition.petition.domain.auth.RefreshTokenRepository;
-import petition.petition.domain.petition.exception.PasswordMismatchException;
 import petition.petition.global.exception.ExpiredTokenException;
 import petition.petition.global.security.TokenResponse;
 

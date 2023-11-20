@@ -10,8 +10,8 @@ import lombok.Getter;
 public enum ErrorCode {
 
     //jwt
-    EXPIRED_TOKEN(401 , "Expired token"),
-    INVALID_TOKEN(401, "Invalid token"),
+    EXPIRED_TOKEN(403 , "Expired token"),
+    INVALID_TOKEN(403, "Invalid token"),
 
     //user
     USER_NOT_FOUND(404,"User not found"),
