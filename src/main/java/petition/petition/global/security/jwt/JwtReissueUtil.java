@@ -30,7 +30,7 @@ public class JwtReissueUtil {
 
     public TokenResponse reissue(String refreshToken) {
 
-        if(isNotRefreshToken(refreshToken))
+        if(!isRefreshToken(refreshToken))
             throw InvalidTokenException.EXCEPTION;
 
         RefreshToken token = refreshTokenRepository.findByRefreshToken(refreshToken)
@@ -55,14 +55,13 @@ public class JwtReissueUtil {
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
-        } catch (JwtException e) {
+        } catch (Exception e) {
             throw InvalidTokenException.EXCEPTION;
         }
     }
 
-    private boolean isNotRefreshToken(String token) {
-        Claims claims = getClaims(token);
-        return claims == null || !claims.containsKey("type") || !"refresh".equals(claims.get("type"));
+    private boolean isRefreshToken(String token) {
+        return getClaims(token).get("type").equals("refresh");
     }
 
     // JWT 토큰에서 인증 정보 조회

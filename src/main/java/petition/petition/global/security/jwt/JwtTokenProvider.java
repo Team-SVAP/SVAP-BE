@@ -35,7 +35,7 @@ public class JwtTokenProvider {
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExp() * 1000)) // set Expire Time
+                .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExp() * 1000))
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
 
@@ -49,7 +49,7 @@ public class JwtTokenProvider {
                 .setSubject(accountId)
                 .claim("type", "refresh")
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + jwtProperties.getRefreshExp() * 1000))//만료시간은
+                .setExpiration(new Date(now.getTime() + jwtProperties.getRefreshExp() * 1000))
                 .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecretKey())
                 .compact();
 
