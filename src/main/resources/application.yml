@@ -21,9 +21,10 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
   redis:
-    port: 6379
     host: 15.164.62.45
+    port: 6379
 
 jwt:
   header: ${HEADER:Authorization}
@@ -31,7 +32,6 @@ jwt:
   secret-key: ${JWT_SECRET_KEY:HudYB&d-kl}
   accessExp: ${JWT_ACCESS_EXP:3600}
   refreshExp: ${JWT_REFRESH_EXP:4800}
-
 
 logging:
   level:
