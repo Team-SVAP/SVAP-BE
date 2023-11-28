@@ -29,5 +29,5 @@ public class CreatePetitionRequest {
     private String location;
 
     private List<String> imageUrl;
-}
 
+}
