@@ -2,7 +2,6 @@ package petition.petition.global.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,8 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import petition.petition.domain.auth.RefreshToken;
-import petition.petition.domain.auth.RefreshTokenRepository;
 import petition.petition.global.exception.ExpiredTokenException;
 import petition.petition.global.exception.InvalidTokenException;
 import petition.petition.global.security.TokenResponse;
@@ -23,27 +20,26 @@ import petition.petition.global.security.auth.AuthDetailsService;
 @Transactional
 public class JwtReissueUtil {
 
-    private final RefreshTokenRepository refreshTokenRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
 
     public TokenResponse reissue(String refreshToken) {
 
-        if(!isRefreshToken(refreshToken))
+        if(!isRefreshToken(refreshToken)) {
             throw InvalidTokenException.EXCEPTION;
+        }
 
-        RefreshToken token = refreshTokenRepository.findByRefreshToken(refreshToken)
-                .orElseThrow(()->InvalidTokenException.EXCEPTION);
-
-        String accountId = token.getAccountId();
-
-        refreshTokenRepository.delete(token);
+        String accountId = getId(refreshToken);
 
         return TokenResponse.builder()
                 .accessToken(jwtTokenProvider.createAccessToken(accountId))
                 .refreshToken(refreshToken)
                 .build();
+    }
+
+    private String getId(String token) {
+        return getClaims(token).getSubject();
     }
 
     private Claims getClaims(String token) {
