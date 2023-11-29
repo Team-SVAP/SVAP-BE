@@ -45,8 +45,8 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS-KEY}
-      secretKey: ${SECRET-KEY}
+      accessKey: ${ACCESS_KEY}
+      secretKey: ${SECRET_KEY}
     s3:
       bucket: ${BUCKET}
     region:
@@ -69,3 +69,4 @@ cloud:
     default-produces-media-type: application/json
     paths-to-match:
       - /v1/**
+

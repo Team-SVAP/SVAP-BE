@@ -30,7 +30,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-	//추가한거
+	//jwt
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
 
 	//swagger
