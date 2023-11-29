@@ -60,7 +60,6 @@ public class JwtReissueUtil {
         return getClaims(token).get("type").equals("refresh");
     }
 
-    // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
         Claims claims = getClaims(token);
         UserDetails userDetails = authDetailsService.loadUserByUsername(claims.getSubject());
@@ -68,4 +67,3 @@ public class JwtReissueUtil {
     }
 
 }
-
