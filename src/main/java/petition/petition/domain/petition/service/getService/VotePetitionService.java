@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
-import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 public class VotePetitionService {
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> getVote(Types type) {
+    public List<PetitionListResponse> getVoteSortedPetition(Types type) {
 
         return petitionRepository.findAllByTypesOrderByVoteCountsDesc(type)
                 .stream()

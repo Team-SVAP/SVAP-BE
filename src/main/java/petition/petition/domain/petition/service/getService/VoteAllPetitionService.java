@@ -16,7 +16,7 @@ public class VoteAllPetitionService {
 
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> allVote() {
+    public List<PetitionListResponse> getAllVoteSortedPetition() {
 
         return petitionRepository.findAllByOrderByVoteCountsDesc()
                 .stream()

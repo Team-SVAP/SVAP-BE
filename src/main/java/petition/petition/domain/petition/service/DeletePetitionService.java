@@ -20,17 +20,16 @@ public class DeletePetitionService {
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void delete(Long petitionId) {
+    public void deletePetition(Long petitionId) {
         User currentUser = userFacade.getCurrentUser();
 
         Petition petition = petitionRepository.findById(petitionId)
-                .orElseThrow(()-> PetitionNotFoundException.EXCEPTION);
+                .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
         if (!currentUser.equals(petition.getUser()) && currentUser.getRole() != ADMIN) {
             throw WriterMisMatchedException.EXCEPTION;
         }
 
         petitionRepository.delete(petition);
-        }
-
     }
+}
