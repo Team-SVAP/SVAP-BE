@@ -26,6 +26,7 @@ public class UserController {
     private final CheckUsernameService checkUsernameService;
     private final CheckPasswordService checkPasswordService;
     private final MyInfoService myInfoService;
+    private final UserWithdrawalService userWithdrawalService;
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -61,6 +62,11 @@ public class UserController {
     public MyInfoResponse myInfo() {
         return myInfoService.myInfo();
 
+    }
+
+    @DeleteMapping
+    public void userWithdrawal() {
+        userWithdrawalService.userWithdrawal();
     }
 
     @PostMapping("/ck-account-id")
