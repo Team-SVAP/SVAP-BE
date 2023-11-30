@@ -18,7 +18,7 @@ public class SearchPetitionService {
     private final PetitionRepository petitionRepository;
 
 
-    public List<PetitionListResponse> search(SearchPetitionRequest request) {
+    public List<PetitionListResponse> searchPetition(SearchPetitionRequest request) {
 
         return petitionRepository.findAllByTitleContaining(request.getTitle())
                 .stream()

@@ -49,13 +49,13 @@ public class PetitionController {
     }
 
     @PatchMapping("/{petitionId}")
-    public void modify(@PathVariable Long petitionId , @RequestBody @Valid ModifyPetitionRequest request) {
+    public void modifyPetition(@PathVariable Long petitionId , @RequestBody @Valid ModifyPetitionRequest request) {
         modifyPetitionService.modifyPetition(petitionId,request);
     }
 
     @DeleteMapping("/{petitionId}")
-    public void delete(@PathVariable Long petitionId) {
-        deletePetitionService.delete(petitionId);
+    public void deletePetition(@PathVariable Long petitionId) {
+        deletePetitionService.deletePetition(petitionId);
     }
 
     @GetMapping("/{petitionId}")
@@ -64,23 +64,23 @@ public class PetitionController {
     }
 
     @GetMapping("/popular")
-    public PetitionListResponse getPopular() {
-        return getPopularPetitionService.getPopular();
+    public PetitionListResponse getPopularPetition() {
+        return getPopularPetitionService.getPopularPetition();
     }
 
     @PostMapping("/search")
-    public List<PetitionListResponse> search(@RequestBody @Valid SearchPetitionRequest request) {
-        return searchPetitionService.search(request);
+    public List<PetitionListResponse> searchPetition(@RequestBody @Valid SearchPetitionRequest request) {
+        return searchPetitionService.searchPetition(request);
     }
 
     @GetMapping("/vote/{type}")
-    public List<PetitionListResponse> getVote(@PathVariable Types type) {
-        return votePetitionService.getVote(type);
+    public List<PetitionListResponse> getVoteSortedPetition(@PathVariable Types type) {
+        return votePetitionService.getVoteSortedPetition(type);
     }
 
     @GetMapping("/vote-all")
-    public List<PetitionListResponse> allVote() {
-        return voteAllPetitionService.allVote();
+    public List<PetitionListResponse> getAllVoteSortedPetition() {
+        return voteAllPetitionService.getAllVoteSortedPetition();
     }
 
     @GetMapping("/sort/{type}/{accessTypes}")

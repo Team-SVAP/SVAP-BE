@@ -29,7 +29,6 @@ public class ClickVoteService {
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
-
         if(voteRepository.existsByUserAndPetition(currentUser, petition)) {
 
             voteRepository.deleteByUserAndPetition(currentUser, petition);

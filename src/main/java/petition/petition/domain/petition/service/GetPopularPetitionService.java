@@ -12,7 +12,7 @@ import petition.petition.domain.petition.presentation.dto.response.PetitionListR
 public class GetPopularPetitionService {
     private final PetitionRepository petitionRepository;
 
-    public PetitionListResponse getPopular() {
+    public PetitionListResponse getPopularPetition() {
 
         Petition petition = petitionRepository.findTopByOrderByViewCountsDesc()
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
