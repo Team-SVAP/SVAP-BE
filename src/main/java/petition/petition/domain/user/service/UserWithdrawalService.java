@@ -19,6 +19,5 @@ public class UserWithdrawalService {
         User currentUser = userFacade.getCurrentUser();
 
         userRepository.deleteUserByAccountId(currentUser.getAccountId());
-
     }
 }
