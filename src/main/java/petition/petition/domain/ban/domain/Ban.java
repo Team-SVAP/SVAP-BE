@@ -20,10 +20,12 @@ public class Ban {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(nullable = false)
     private String bannedBy;
 
     @Column(columnDefinition = "text", nullable = false)
     private String banReason;
 
+    @Column
     private LocalDate bannedTime;
 }

@@ -42,8 +42,10 @@ public class Petition {
     @Column(nullable = false)
     private LocalDate dateTime;
 
+    @Column
     private int voteCounts;
 
+    @Column
     private int viewCounts;
 
     @Convert(converter = StringListConverter.class)
