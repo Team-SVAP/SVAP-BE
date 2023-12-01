@@ -16,12 +16,14 @@ public class Report {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String whoReported;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "petition_id")
     private Petition petition;
 
+    @Column
     private LocalDate reportTime;
 
 }
