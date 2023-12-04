@@ -2,9 +2,9 @@ spring:
   main:
     allow-bean-definition-overriding : true
   datasource:
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -23,13 +23,13 @@ spring:
       max-request-size: 10MB
 
   redis:
-    host: 15.164.62.45
+    host: redis.xquare.app
     port: 6379
 
 jwt:
   header: ${HEADER:Authorization}
   prefix : ${PREFIX:Bearer}
-  secret-key: ${JWT_SECRET_KEY:HudYB&d-kl}
+  secret-key: ${JWT_SECRET_KEY}
   accessExp: ${JWT_ACCESS_EXP:3600}
   refreshExp: ${JWT_REFRESH_EXP:4800}
 
@@ -45,12 +45,12 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS_KEY}
-      secretKey: ${SECRET_KEY}
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_KEY}
     s3:
-      bucket: ${BUCKET}
+      bucket: kangsunbucket
     region:
-      static: ${STATIC}
+      static: ap-northeast-2
 
   stack:
     auto: false
