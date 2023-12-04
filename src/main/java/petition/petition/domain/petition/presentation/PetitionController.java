@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/petition")
+@RequestMapping("/svap/petition")
 @RequiredArgsConstructor
 public class PetitionController {
 

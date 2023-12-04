@@ -8,7 +8,7 @@ import petition.petition.domain.vote.service.ClickVoteService;
 
 @Service
 @RequiredArgsConstructor
-@RequestMapping("/vote")
+@RequestMapping("/svap/vote")
 public class VoteController {
 
     private final ClickVoteService clickVoteService;

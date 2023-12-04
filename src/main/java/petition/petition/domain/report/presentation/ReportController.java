@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/report")
+@RequestMapping("/svap/report")
 public class ReportController {
 
     private final CreateReportService reportService;

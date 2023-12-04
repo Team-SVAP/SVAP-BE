@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ban")
+@RequestMapping("svap/ban")
 public class BanController {
 
     private final CreateBanUserService createBanUserService;

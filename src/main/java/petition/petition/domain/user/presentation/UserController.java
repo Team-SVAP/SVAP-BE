@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/svap/user")
 public class UserController {
 
     private final UserSignupService userSignupService;
