@@ -35,5 +35,5 @@ public class GetBanListService {
                 .map(BanListResponse::new)
                 .collect(Collectors.toList());
     }
-    
+
 }
