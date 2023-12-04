@@ -27,11 +27,11 @@ spring:
     port: 6379
 
 jwt:
-  header: ${HEADER:Authorization}
-  prefix : ${PREFIX:Bearer}
+  header: ${HEADER}
+  prefix : ${PREFIX}
   secret-key: ${JWT_SECRET_KEY}
-  accessExp: ${JWT_ACCESS_EXP:3600}
-  refreshExp: ${JWT_REFRESH_EXP:4800}
+  accessExp: ${JWT_ACCESS_EXP}
+  refreshExp: ${JWT_REFRESH_EXP}
 
 logging:
   level:

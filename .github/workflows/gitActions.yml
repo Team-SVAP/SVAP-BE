@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew build -x test
 
       - name: Deploy to xquare
-        uses: team-xquare/xquare-deployment-action@master
+        uses: team-xquare/xquare-deployment-action@main
         with:
           environment: prod
           access_key: ${{ secrets.XQUARE_ACCESS_KEY }}
