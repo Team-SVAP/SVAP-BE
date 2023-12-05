@@ -38,7 +38,7 @@ public class GetReportListService {
 
         return reports.stream()
                 .map(ReportListResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

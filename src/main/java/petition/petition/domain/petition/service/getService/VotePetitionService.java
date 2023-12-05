@@ -21,7 +21,7 @@ public class VotePetitionService {
         return petitionRepository.findAllByTypesOrderByVoteCountsDesc(type)
                 .stream()
                 .map(PetitionListResponse::new)
-                .collect(Collectors.toList());
-
+                .toList();
     }
+
 }

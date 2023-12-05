@@ -21,6 +21,6 @@ public class VoteAllPetitionService {
         return petitionRepository.findAllByOrderByVoteCountsDesc()
                 .stream()
                 .map(PetitionListResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

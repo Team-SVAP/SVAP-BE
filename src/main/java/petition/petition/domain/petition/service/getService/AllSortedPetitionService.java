@@ -23,6 +23,6 @@ public class AllSortedPetitionService {
         return petitionRepository.queryPetitionByAccessTypes(accessTypes)
                 .stream()
                 .map(PetitionListResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

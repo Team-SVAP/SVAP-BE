@@ -25,6 +25,6 @@ public class MyPetitionService {
         return petitionRepository.findAllByUser(currentUser)
                 .stream()
                 .map(PetitionListResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

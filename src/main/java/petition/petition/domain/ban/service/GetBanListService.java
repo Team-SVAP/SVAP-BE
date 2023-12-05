@@ -33,7 +33,7 @@ public class GetBanListService {
         return banRepository.findAll()
                 .stream()
                 .map(BanListResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }
