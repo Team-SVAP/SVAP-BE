@@ -25,4 +25,5 @@ public class SearchPetitionService {
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
     }
+
 }
