@@ -7,7 +7,6 @@ import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

@@ -8,7 +8,6 @@ import petition.petition.domain.petition.presentation.dto.response.PetitionListR
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.facade.UserFacade;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

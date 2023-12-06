@@ -6,10 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
-import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
