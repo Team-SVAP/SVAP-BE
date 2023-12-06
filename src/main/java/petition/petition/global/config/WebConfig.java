@@ -12,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedOrigins(
+                        "https://prod-server.xquare.app/*",
                         "http://localhost:3000",
                         "http://lcoalhost:3001",
                         "http://localhost:4000"
@@ -19,4 +20,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD")
                 .allowedHeaders("*");
     }
+
 }
