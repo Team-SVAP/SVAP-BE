@@ -34,4 +34,5 @@ public class ChangeNormalService {
 
         petition.changeAccessType(AccessTypes.NORMAL);
     }
+
 }

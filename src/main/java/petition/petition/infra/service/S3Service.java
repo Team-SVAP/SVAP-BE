@@ -28,7 +28,6 @@ public class S3Service {
 
     private final AmazonS3 amazonS3;
 
-    @Transactional
     public String uploadImage(MultipartFile image) {
         if (image.isEmpty() || image.getOriginalFilename() == null) {
             throw ImageUploadFailedException.EXCEPTION;
@@ -49,7 +48,6 @@ public class S3Service {
         return getFileUrl(fileName);
     }
 
-    @Transactional
     public List<String> uploadImages(List<MultipartFile> multipartFile) {
 
         List<String> imgUrlList = new ArrayList<>();
@@ -99,15 +97,6 @@ public class S3Service {
             throw WrongImageException.EXCEPTION;
         }
         return fileName.substring(fileName.lastIndexOf("."));
-    }
-
-    public void deleteFile(String fileName) throws IOException{
-        try {
-            amazonS3.deleteObject(bucket, fileName);
-        } catch (SdkClientException e){
-            throw new IOException("삭제를 실패하였습니다.", e);
-        }
-
     }
 
     public String getFileUrl(String fileName) {
