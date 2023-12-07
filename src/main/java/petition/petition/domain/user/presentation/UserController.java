@@ -46,7 +46,6 @@ public class UserController {
         return loginService.login(request);
     }
 
-    @CrossOrigin
     @PostMapping("/reissue")
     @ResponseStatus(HttpStatus.CREATED)
     public TokenResponse reissue(@RequestHeader(name = "AUTHORIZATION_HEADER") String refreshToken) {
