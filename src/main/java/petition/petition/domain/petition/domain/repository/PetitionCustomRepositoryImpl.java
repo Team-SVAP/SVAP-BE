@@ -21,7 +21,7 @@ public class PetitionCustomRepositoryImpl implements PetitionCustomRepository{
         return jpaQueryFactory
                 .selectFrom(petition)
                 .where(petition.types.eq(types).and(petition.accessTypes.eq(accessTypes)))
-                .orderBy(petition.dateTime.desc())
+                .orderBy(petition.id.desc())
                 .fetch();
     }
 
@@ -30,7 +30,7 @@ public class PetitionCustomRepositoryImpl implements PetitionCustomRepository{
         return jpaQueryFactory
                 .selectFrom(petition)
                 .where(petition.accessTypes.eq(accessTypes))
-                .orderBy(petition.dateTime.desc())
+                .orderBy(petition.id.desc())
                 .fetch();
     }
 
