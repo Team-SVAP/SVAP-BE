@@ -4,5 +4,6 @@ public enum AccessTypes {
 
     NORMAL,
     WAITING,
-    APPROVAL
+    APPROVAL,
+    VOTE
 }

@@ -73,24 +73,9 @@ public class PetitionController {
         return searchPetitionService.searchPetition(request);
     }
 
-    @GetMapping("/vote/{type}")
-    public List<PetitionListResponse> getVoteSortedPetition(@PathVariable Types type) {
-        return votePetitionService.getVoteSortedPetition(type);
-    }
-
-    @GetMapping("/vote-all")
-    public List<PetitionListResponse> getAllVoteSortedPetition() {
-        return voteAllPetitionService.getAllVoteSortedPetition();
-    }
-
     @GetMapping("/sort/{type}/{accessTypes}")
     public List<PetitionListResponse> getSortedPetition(@PathVariable Types type, @PathVariable AccessTypes accessTypes) {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
-    }
-
-    @GetMapping("/sort-all/{accessTypes}")
-    public List<PetitionListResponse> allSortedPetitionService(@PathVariable AccessTypes accessTypes) {
-        return allSortedPetitionService.allSortedPetition(accessTypes);
     }
 
     @PatchMapping("/normal/{petitionId}")

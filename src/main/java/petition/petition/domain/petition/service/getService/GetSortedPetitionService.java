@@ -14,13 +14,34 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GetSortedPetitionService {
+
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> getSortedPetition(Types type, AccessTypes accessTypes) {
+    public List<PetitionListResponse> getSortedPetition(Types types, AccessTypes accessTypes) {
 
-        return petitionRepository.queryPetitionByTypesAndAccessTypes(type, accessTypes)
-                .stream()
-                .map(PetitionListResponse::new)
-                .toList();
+        if (types == Types.ALL && accessTypes == AccessTypes.VOTE) {
+            return petitionRepository.findAllByOrderByVoteCountsDesc()
+                    .stream()
+                    .map(PetitionListResponse::new)
+                    .toList();
+        } else if (accessTypes == AccessTypes.VOTE) {
+            return petitionRepository.findAllByTypesOrderByVoteCountsDesc(types)
+                    .stream()
+                    .map(PetitionListResponse::new)
+                    .toList();
+        } else if (types == Types.ALL) {
+            return petitionRepository.queryPetitionByAccessTypes(accessTypes)
+                    .stream()
+                    .map(PetitionListResponse::new)
+                    .toList();
+        }
+        else {
+            return petitionRepository.queryPetitionByTypesAndAccessTypes(types, accessTypes)
+                    .stream()
+                    .map(PetitionListResponse::new)
+                    .toList();
+        }
+
     }
+
 }
