@@ -24,10 +24,7 @@ public class PetitionController {
     private final CreatePetitionService createPetitionService;
     private final ModifyPetitionService modifyPetitionService;
     private final DeletePetitionService deletePetitionService;
-    private final VotePetitionService votePetitionService;
     private final GetPetitionService getPetitionService;
-    private final VoteAllPetitionService voteAllPetitionService;
-    private final AllSortedPetitionService allSortedPetitionService;
     private final GetSortedPetitionService getSortedPetitionService;
     private final SearchPetitionService searchPetitionService;
     private final ChangeWaitingService changeWaitingService;
