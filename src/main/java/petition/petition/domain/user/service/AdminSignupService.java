@@ -23,7 +23,7 @@ public class AdminSignupService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public TokenResponse signUp(AdminSignupRequest request) {
+    public TokenResponse signup(AdminSignupRequest request) {
 
         if (userRepository.existsByAccountId(request.getAccountId())) {
             throw UserAlreadyExistException.EXCEPTION;

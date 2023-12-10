@@ -36,4 +36,5 @@ public class BanController {
     public List<BanListResponse> getBan() {
         return getBanListService.getBan();
     }
+
 }

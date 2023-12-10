@@ -12,7 +12,6 @@ import petition.petition.domain.user.facade.UserFacade;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;
 

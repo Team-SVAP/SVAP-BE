@@ -33,4 +33,5 @@ public class UnBanService {
 
         banRepository.delete(ban);
     }
+
 }

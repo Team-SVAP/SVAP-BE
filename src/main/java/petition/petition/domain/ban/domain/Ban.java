@@ -28,4 +28,5 @@ public class Ban {
 
     @Column
     private LocalDate bannedTime;
+
 }

@@ -19,7 +19,7 @@ public class Report {
     @Column(nullable = false)
     private String whoReported;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id")
     private Petition petition;
 

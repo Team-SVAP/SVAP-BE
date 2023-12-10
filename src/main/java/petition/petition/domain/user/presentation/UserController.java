@@ -37,7 +37,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/admin/signup")
     public TokenResponse adminSignup(@RequestBody @Valid AdminSignupRequest request) {
-        return adminSignupService.signUp(request);
+        return adminSignupService.signup(request);
     }
 
     @PostMapping("/login")

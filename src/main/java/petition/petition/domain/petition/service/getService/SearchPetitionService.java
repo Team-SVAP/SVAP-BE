@@ -1,5 +1,5 @@
 
-package petition.petition.domain.petition.service;
+package petition.petition.domain.petition.service.getService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

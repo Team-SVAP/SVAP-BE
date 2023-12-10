@@ -11,11 +11,10 @@ import java.util.Optional;
 
 public interface PetitionRepository extends JpaRepository<Petition, Long>, PetitionCustomRepository {
 
-    //모든 청원 조회 (남겨)
-    List<Petition> findAllByOrderByDateTimeDesc();
-
+    //type 으로 투표순으로 청원보기
     List<Petition> findAllByTypesOrderByVoteCountsDesc(Types types);
 
+    //투표순으로 청원 보기
     List<Petition> findAllByOrderByVoteCountsDesc();
 
     //내 청원 보기 (남겨)
