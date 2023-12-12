@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class SearchPetitionService {
-    private final PetitionRepository petitionRepository;
 
+    private final PetitionRepository petitionRepository;
 
     public List<PetitionListResponse> searchPetition(SearchPetitionRequest request) {
 

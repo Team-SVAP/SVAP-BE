@@ -17,13 +17,13 @@ public interface PetitionRepository extends JpaRepository<Petition, Long>, Petit
     //투표순으로 청원 보기
     List<Petition> findAllByOrderByVoteCountsDesc();
 
-    //내 청원 보기 (남겨)
+    //내 청원 보기
     List<Petition> findAllByUser(User user);
 
-    //제목으로 검색 (남겨)
+    //제목으로 검색
     List<Petition> findAllByTitleContaining(String title);
 
-    //인기 청원 보기 (남겨)
+    //인기 청원 보기
     Optional<Petition> findTopByOrderByViewCountsDesc();
 
 }

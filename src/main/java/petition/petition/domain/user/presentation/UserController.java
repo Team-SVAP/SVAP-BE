@@ -55,13 +55,11 @@ public class UserController {
     @GetMapping
     public List<PetitionListResponse> myPetition() {
         return myPetitionService.myPetition();
-
     }
 
     @GetMapping("/my-info")
     public MyInfoResponse myInfo() {
         return myInfoService.myInfo();
-
     }
 
     @DeleteMapping
@@ -72,19 +70,16 @@ public class UserController {
     @PostMapping("/ck-account-id")
     public void checkAccountId(@RequestBody @Valid CheckAccountIdRequest request) {
         checkAccountIdService.checkAccountId(request);
-
     }
 
     @PostMapping("/ck-username")
     public void checkUsername(@RequestBody @Valid CheckUsernameRequest request) {
         checkUsernameService.checkUsername(request);
-
     }
 
     @PostMapping("/ck-password")
     public void checkPassword(@RequestBody @Valid CheckPasswordRequest request) {
         checkPasswordService.checkPassword(request);
-
     }
 
 }
