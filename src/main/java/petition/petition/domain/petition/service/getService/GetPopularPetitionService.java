@@ -21,4 +21,5 @@ public class GetPopularPetitionService {
 
         return new PetitionListResponse(petition);
     }
+
 }

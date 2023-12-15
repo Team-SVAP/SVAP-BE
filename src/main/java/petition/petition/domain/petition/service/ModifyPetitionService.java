@@ -33,4 +33,5 @@ public class ModifyPetitionService {
 
         petition.modifyPetition(request.getTitle(), request.getContent(), request.getTypes(), request.getLocation());
     }
+
 }

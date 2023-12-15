@@ -32,4 +32,5 @@ public class DeletePetitionService {
 
         petitionRepository.delete(petition);
     }
+
 }

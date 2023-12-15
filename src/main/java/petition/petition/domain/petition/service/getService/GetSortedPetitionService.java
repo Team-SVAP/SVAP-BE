@@ -41,7 +41,6 @@ public class GetSortedPetitionService {
                     .map(PetitionListResponse::new)
                     .toList();
         }
-
     }
 
 }

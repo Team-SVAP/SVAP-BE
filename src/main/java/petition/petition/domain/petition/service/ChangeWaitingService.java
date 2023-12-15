@@ -35,4 +35,5 @@ public class ChangeWaitingService {
 
         petition.changeAccessType(AccessTypes.WAITING);
     }
+
 }

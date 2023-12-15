@@ -34,4 +34,5 @@ public class ChangeAccessService {
 
         petition.changeAccessType(AccessTypes.APPROVAL);
     }
+
 }
