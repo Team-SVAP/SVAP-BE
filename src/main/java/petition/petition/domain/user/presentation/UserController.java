@@ -41,7 +41,6 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.CREATED)
     public TokenResponse login(@RequestBody @Valid LoginRequest request) {
         return loginService.login(request);
     }
