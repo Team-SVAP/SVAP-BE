@@ -21,5 +21,5 @@ public class RefreshToken{
         this.expiration = expiration;
         return this;
     }
-}
 
+}
