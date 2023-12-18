@@ -1,4 +1,4 @@
-name: xquare-deployment
+name: xquare-deployment2
 
 on:
   push:
