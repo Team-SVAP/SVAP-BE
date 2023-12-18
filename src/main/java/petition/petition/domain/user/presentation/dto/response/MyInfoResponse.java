@@ -15,7 +15,7 @@ public class MyInfoResponse {
 
     private String accountId;
 
-    private String test;
+    private String test;//test
 
     public MyInfoResponse(User user) {
         userName = user.getUserName();
