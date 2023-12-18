@@ -1,8 +1,8 @@
-name: xquare-deployment2
+name: xquare-deployment
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "xquare" ]
 
 jobs:
 
