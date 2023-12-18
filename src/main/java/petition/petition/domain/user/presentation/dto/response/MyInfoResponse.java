@@ -1,6 +1,5 @@
 package petition.petition.domain.user.presentation.dto.response;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import petition.petition.domain.user.domain.User;
@@ -16,9 +15,12 @@ public class MyInfoResponse {
 
     private String accountId;
 
+    private String test2;
+
     public MyInfoResponse(User user) {
         userName = user.getUserName();
         role = user.getRole();
         accountId = user.getAccountId();
+        test2 = user.getAccountId();
     }
 }
