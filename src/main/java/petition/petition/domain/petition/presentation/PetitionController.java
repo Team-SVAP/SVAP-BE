@@ -28,8 +28,6 @@ public class PetitionController {
     private final GetSortedPetitionService getSortedPetitionService;
     private final SearchPetitionService searchPetitionService;
     private final ChangeAccessTypeService changeAccessTypeService;
-    private final ChangeAccessService changeAccessService;
-    private final ChangeNormalService changeNormalService;
     private final GetPopularPetitionService getPopularPetitionService;
     private final CreateImageService createImageService;
 
@@ -77,19 +75,9 @@ public class PetitionController {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 
-    @PatchMapping("/normal/{petition-id}")
-    public void changeNormal(@PathVariable("petition-id") Long id) {
-        changeNormalService.changeNormal(id);
-    }
-
-    @PatchMapping("/wait/{petitionId}")
-    public void changeWaiting(@PathVariable Long petitionId) {
-        changeWaitingService.changeWait(petitionId);
-    }
-
-    @PatchMapping("/access/{petitionId}")
-    public void changeAccess(@PathVariable Long petitionId) {
-        changeAccessService.changeAccess(petitionId);
+    @PatchMapping("/access_types/{petition-id}")
+    public void changeAccessType(@RequestParam(value = "access_types") AccessTypes accessTypes, @PathVariable("petition-id") Long id) {
+        changeAccessTypeService.changeAccessTypeService(accessTypes, id);
     }
 
 }

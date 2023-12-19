@@ -16,12 +16,12 @@ import static petition.petition.domain.user.domain.type.Role.ADMIN;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ChangeNormalService {
+public class ChangeAccessTypeService {
 
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void changeNormal(Long petitionId) {
+    public void changeAccessTypeService(AccessTypes accessTypes, Long petitionId) {
 
         User currentUser = userFacade.getCurrentUser();
 
@@ -32,7 +32,7 @@ public class ChangeNormalService {
         Petition petition = petitionRepository.findById(petitionId)
                 .orElseThrow(()-> PetitionNotFoundException.EXCEPTION);
 
-        petition.changeAccessType(AccessTypes.NORMAL);
+        petition.changeAccessType(accessTypes);
     }
 
 }
