@@ -13,9 +13,11 @@ public class VoteController {
 
     private final ClickVoteService clickVoteService;
 
-    @PatchMapping("/{petitionId}")
-    public void clickVote(@PathVariable Long petitionId) {
-        clickVoteService.clickVote(petitionId);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PatchMapping("/{petition-id}")
+    public void clickVote(@PathVariable("petition-id") Long id) {
+        clickVoteService.clickVote(id);
+
     }
 
 }

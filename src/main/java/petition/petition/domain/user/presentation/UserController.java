@@ -28,8 +28,8 @@ public class UserController {
     private final MyInfoService myInfoService;
     private final UserWithdrawalService userWithdrawalService;
 
-    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/signup")
     public TokenResponse signup(@RequestBody @Valid SignupRequest request) {
         return userSignupService.signUp(request);
     }
@@ -46,7 +46,6 @@ public class UserController {
     }
 
     @PostMapping("/reissue")
-    @ResponseStatus(HttpStatus.CREATED)
     public TokenResponse reissue(@RequestHeader(name = "AUTHORIZATION_HEADER") String refreshToken) {
         return reissueService.reissue(refreshToken);
     }

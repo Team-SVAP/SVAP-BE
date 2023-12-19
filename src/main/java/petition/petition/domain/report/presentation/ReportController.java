@@ -1,6 +1,7 @@
 package petition.petition.domain.report.presentation;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import petition.petition.domain.report.presentation.dto.response.ReportListResponse;
 import petition.petition.domain.report.service.CreateReportService;
@@ -16,6 +17,7 @@ public class ReportController {
     private final CreateReportService reportService;
     private final GetReportListService getReportListService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{petition-id}")
     public void report(@PathVariable("petition-id") Long id) {
         reportService.report(id);
