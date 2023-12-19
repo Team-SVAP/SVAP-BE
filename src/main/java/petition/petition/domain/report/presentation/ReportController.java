@@ -16,9 +16,9 @@ public class ReportController {
     private final CreateReportService reportService;
     private final GetReportListService getReportListService;
 
-    @PostMapping("/{petitionId}")
-    public void report(@PathVariable Long petitionId) {
-        reportService.report(petitionId);
+    @PostMapping("/{petition-id}")
+    public void report(@PathVariable("petition-id") Long id) {
+        reportService.report(id);
     }
 
     @GetMapping("/get-list")

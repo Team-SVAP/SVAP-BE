@@ -45,19 +45,19 @@ public class PetitionController {
         return createImageService.createImage(multipartFiles);
     }
 
-    @PatchMapping("/{petitionId}")
-    public void modifyPetition(@PathVariable Long petitionId , @RequestBody @Valid ModifyPetitionRequest request) {
-        modifyPetitionService.modifyPetition(petitionId,request);
+    @PatchMapping("/{petition-id}")
+    public void modifyPetition(@PathVariable("petition-id") Long id, @RequestBody @Valid ModifyPetitionRequest request) {
+        modifyPetitionService.modifyPetition(id,request);
     }
 
-    @DeleteMapping("/{petitionId}")
-    public void deletePetition(@PathVariable Long petitionId) {
-        deletePetitionService.deletePetition(petitionId);
+    @DeleteMapping("/{petition-id}")
+    public void deletePetition(@PathVariable("petition-id") Long id) {
+        deletePetitionService.deletePetition(id);
     }
 
-    @GetMapping("/{petitionId}")
-    public PetitionResponse getPetition(@PathVariable Long petitionId) {
-        return getPetitionService.getPetition(petitionId);
+    @GetMapping("/{petition-id}")
+    public PetitionResponse getPetition(@PathVariable("petition-id") Long id) {
+        return getPetitionService.getPetition(id);
     }
 
     @GetMapping("/popular")
@@ -75,9 +75,9 @@ public class PetitionController {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 
-    @PatchMapping("/normal/{petitionId}")
-    public void changeNormal(@PathVariable Long petitionId) {
-        changeNormalService.changeNormal(petitionId);
+    @PatchMapping("/normal/{petition-id}")
+    public void changeNormal(@PathVariable("petition-id") Long id) {
+        changeNormalService.changeNormal(id);
     }
 
     @PatchMapping("/wait/{petitionId}")
