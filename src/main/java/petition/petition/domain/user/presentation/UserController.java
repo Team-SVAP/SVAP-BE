@@ -64,13 +64,13 @@ public class UserController {
     }
 
     @GetMapping("/verification")
-    public void checkAccountId(
+    public void verification(
             @RequestParam(value = "account-id", required = false) String accountId,
             @RequestParam(value = "password", required = false) String password,
             @RequestParam(value = "username", required = false) String username
             ) {
         VerificationRequest request = new VerificationRequest(accountId, password, username);
-        verificationService.checkAccountId(request);
+        verificationService.verification(request);
     }
 
 }

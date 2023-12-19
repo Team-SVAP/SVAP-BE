@@ -12,7 +12,7 @@ public class VerificationService {
 
     private final UserRepository userRepository;
 
-    public void checkAccountId(VerificationRequest request) {
+    public void verification(VerificationRequest request) {
 
         if (request.getAccountId() != null) {
             if (userRepository.existsByAccountId(request.getAccountId())) {
