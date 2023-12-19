@@ -28,11 +28,13 @@ public class UserController {
     private final MyInfoService myInfoService;
     private final UserWithdrawalService userWithdrawalService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
     public TokenResponse signup(@RequestBody @Valid SignupRequest request) {
         return userSignupService.signUp(request);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/admin/signup")
     public TokenResponse adminSignup(@RequestBody @Valid AdminSignupRequest request) {
         return adminSignupService.signup(request);
