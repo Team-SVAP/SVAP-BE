@@ -22,9 +22,7 @@ public class UserController {
     private final ReissueService reissueService;
     private final AdminSignupService adminSignupService;
     private final MyPetitionService myPetitionService;
-    private final CheckAccountIdService checkAccountIdService;
-    private final CheckUsernameService checkUsernameService;
-    private final CheckPasswordService checkPasswordService;
+    private final VerificationService verificationService;
     private final MyInfoService myInfoService;
     private final UserWithdrawalService userWithdrawalService;
 
@@ -65,19 +63,14 @@ public class UserController {
         userWithdrawalService.userWithdrawal();
     }
 
-    @PostMapping("/ck-account-id")
-    public void checkAccountId(@RequestBody @Valid CheckAccountIdRequest request) {
-        checkAccountIdService.checkAccountId(request);
-    }
-
-    @PostMapping("/ck-username")
-    public void checkUsername(@RequestBody @Valid CheckUsernameRequest request) {
-        checkUsernameService.checkUsername(request);
-    }
-
-    @PostMapping("/ck-password")
-    public void checkPassword(@RequestBody @Valid CheckPasswordRequest request) {
-        checkPasswordService.checkPassword(request);
+    @GetMapping("/verification")
+    public void checkAccountId(
+            @RequestParam(value = "account-id", required = false) String accountId,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "username", required = false) String username
+            ) {
+        VerificationRequest request = new VerificationRequest(accountId, password, username);
+        verificationService.checkAccountId(request);
     }
 
 }
