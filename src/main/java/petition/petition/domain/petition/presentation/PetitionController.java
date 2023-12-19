@@ -27,7 +27,7 @@ public class PetitionController {
     private final GetPetitionService getPetitionService;
     private final GetSortedPetitionService getSortedPetitionService;
     private final SearchPetitionService searchPetitionService;
-    private final ChangeWaitingService changeWaitingService;
+    private final ChangeAccessTypeService changeAccessTypeService;
     private final ChangeAccessService changeAccessService;
     private final ChangeNormalService changeNormalService;
     private final GetPopularPetitionService getPopularPetitionService;
@@ -65,13 +65,15 @@ public class PetitionController {
         return getPopularPetitionService.getPopularPetition();
     }
 
-    @PostMapping("/search")
-    public List<PetitionListResponse> searchPetition(@RequestBody @Valid SearchPetitionRequest request) {
-        return searchPetitionService.searchPetition(request);
+    @GetMapping("/search")
+    public List<PetitionListResponse> searchPetition(@RequestParam(value = "title") String title) {
+        return searchPetitionService.searchPetition(title);
     }
 
     @GetMapping("/sort/{type}/{accessTypes}")
-    public List<PetitionListResponse> getSortedPetition(@PathVariable Types type, @PathVariable AccessTypes accessTypes) {
+    public List<PetitionListResponse> getSortedPetition(
+            @RequestParam(value = "types") Types type,
+            @RequestParam(value = "access_types") AccessTypes accessTypes) {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 

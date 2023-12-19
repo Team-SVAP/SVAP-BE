@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.petition.domain.repository.PetitionRepository;
-import petition.petition.domain.petition.presentation.dto.request.SearchPetitionRequest;
 import petition.petition.domain.petition.presentation.dto.response.PetitionListResponse;
 
 import java.util.List;
@@ -18,9 +17,9 @@ public class SearchPetitionService {
 
     private final PetitionRepository petitionRepository;
 
-    public List<PetitionListResponse> searchPetition(SearchPetitionRequest request) {
+    public List<PetitionListResponse> searchPetition(String title) {
 
-        return petitionRepository.findAllByTitleContaining(request.getTitle())
+        return petitionRepository.findAllByTitleContaining(title)
                 .stream()
                 .map(PetitionListResponse::new)
                 .collect(Collectors.toList());
