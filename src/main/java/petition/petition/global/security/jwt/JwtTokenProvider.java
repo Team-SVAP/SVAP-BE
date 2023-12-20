@@ -30,11 +30,11 @@ public class JwtTokenProvider {
 
     // JWT 토큰 생성
     public String createAccessToken(String accountId) {
-        Claims claims = Jwts.claims().setSubject(accountId); // JWT payload 에 저장되는 정보단위, 보통 여기서 user를 식별하는 값을 넣는다.
+        Claims claims = Jwts.claims().setSubject(accountId);
         Date now = new Date();
         return Jwts.builder()
-                .setClaims(claims) // 정보 저장
-                .setIssuedAt(now) // 토큰 발행 시간 정보
+                .setClaims(claims)
+                .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExp() * 1000))
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();

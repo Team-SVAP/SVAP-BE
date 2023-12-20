@@ -3,10 +3,8 @@ package petition.petition.domain.ban.presentation.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import petition.petition.domain.ban.domain.Ban;
-import petition.petition.domain.user.domain.User;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter

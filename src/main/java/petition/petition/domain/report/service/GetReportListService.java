@@ -15,8 +15,8 @@ import java.util.List;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GetReportListService {
 

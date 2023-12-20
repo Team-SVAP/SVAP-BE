@@ -20,4 +20,5 @@ public class UserWithdrawalService {
 
         userRepository.deleteUserByAccountId(currentUser.getAccountId());
     }
+
 }
