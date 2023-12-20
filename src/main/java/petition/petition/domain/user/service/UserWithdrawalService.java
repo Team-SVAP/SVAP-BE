@@ -15,10 +15,10 @@ public class UserWithdrawalService {
     private final UserFacade userFacade;
 
     @Transactional
-
     public void userWithdrawal() {
         User currentUser = userFacade.getCurrentUser();
 
         userRepository.deleteUserByAccountId(currentUser.getAccountId());
     }
+
 }
