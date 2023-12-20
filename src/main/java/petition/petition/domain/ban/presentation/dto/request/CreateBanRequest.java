@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class BanRequest {
+public class CreateBanRequest {
 
     @NotNull(message = "차단할 유저의 accountId를 입력해주세요.")
     private String accountId;

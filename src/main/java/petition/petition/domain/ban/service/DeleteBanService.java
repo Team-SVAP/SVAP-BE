@@ -15,12 +15,12 @@ import static petition.petition.domain.user.domain.type.Role.ADMIN;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UnBanService {
+public class DeleteBanService {
 
     private final UserFacade userFacade;
     private final BanRepository banRepository;
 
-    public void unBan(Long banId) {
+    public void deleteBan(Long banId) {
 
         User currentUser = userFacade.getCurrentUser();
 

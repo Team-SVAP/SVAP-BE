@@ -14,13 +14,13 @@ import java.util.List;
 @RequestMapping("/svap/report")
 public class ReportController {
 
-    private final CreateReportService reportService;
+    private final CreateReportService createReportService;
     private final GetReportListService getReportListService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{petition-id}")
-    public void report(@PathVariable("petition-id") Long id) {
-        reportService.report(id);
+    public void createReport(@PathVariable("petition-id") Long id) {
+        createReportService.CreateReport(id);
     }
 
     @GetMapping("/get-list")
