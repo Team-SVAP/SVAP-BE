@@ -30,7 +30,7 @@ public class DeletePetitionService {
             throw WriterMisMatchedException.EXCEPTION;
         }
 
-        petitionRepository.delete(petition);
+        petitionRepository.deletePetitionById(petitionId);
     }
 
 }

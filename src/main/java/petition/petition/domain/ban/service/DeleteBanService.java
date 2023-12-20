@@ -3,7 +3,6 @@ package petition.petition.domain.ban.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import petition.petition.domain.ban.domain.Ban;
 import petition.petition.domain.ban.domain.repository.BanRepository;
 import petition.petition.domain.ban.exception.BanNotFoundException;
 import petition.petition.domain.petition.exception.NotAdminException;
@@ -28,10 +27,10 @@ public class DeleteBanService {
             throw NotAdminException.EXCEPTION;
         }
 
-        Ban ban = banRepository.findById(banId)
+        banRepository.findById(banId)
                 .orElseThrow(() -> BanNotFoundException.EXCEPTION);
 
-        banRepository.delete(ban);
+        banRepository.deleteBanById(banId);
     }
 
 }

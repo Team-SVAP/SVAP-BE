@@ -8,4 +8,6 @@ public interface BanRepository extends JpaRepository<Ban, Long> {
 
     Boolean existsByUser(User user);
 
+    void deleteBanById(Long id);
+
 }
