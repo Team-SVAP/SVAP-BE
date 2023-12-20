@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import petition.petition.domain.ban.domain.Ban;
 import petition.petition.domain.ban.domain.repository.BanRepository;
-import petition.petition.domain.ban.presentation.dto.request.BanRequest;
+import petition.petition.domain.ban.presentation.dto.request.CreateBanRequest;
 import petition.petition.domain.petition.exception.NotAdminException;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.domain.repository.UserRepository;
@@ -25,7 +25,7 @@ public class CreateBanUserService {
     private final UserFacade userFacade;
     private final UserRepository userRepository;
 
-    public void createBan(BanRequest request) {
+    public void createBan(CreateBanRequest request) {
 
         User currentUser = userFacade.getCurrentUser();
 

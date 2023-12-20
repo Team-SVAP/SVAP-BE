@@ -22,7 +22,7 @@ public class CreateReportService {
     private final UserFacade userFacade;
     private final PetitionRepository petitionRepository;
 
-    public void report(Long petitionId) {
+    public void CreateReport(Long petitionId) {
 
         User currentUser = userFacade.getCurrentUser();
 
