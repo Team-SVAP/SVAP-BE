@@ -68,10 +68,10 @@ public class PetitionController {
         return searchPetitionService.searchPetition(title);
     }
 
-    @GetMapping("/sort/{type}/{accessTypes}")
+    @GetMapping("/sort")
     public List<PetitionListResponse> getSortedPetition(
             @RequestParam(value = "types") Types type,
-            @RequestParam(value = "access_types") AccessTypes accessTypes) {
+            @RequestParam(value = "access-types") AccessTypes accessTypes) {
         return getSortedPetitionService.getSortedPetition(type, accessTypes);
     }
 
