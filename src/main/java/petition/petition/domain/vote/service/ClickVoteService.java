@@ -26,7 +26,7 @@ public class ClickVoteService {
 
         User currentUser = userFacade.getCurrentUser();
 
-        Petition petition = petitionRepository.findById(petitionId)
+        Petition petition = petitionRepository.findPetitionById(petitionId)
                 .orElseThrow(() -> PetitionNotFoundException.EXCEPTION);
 
         if(voteRepository.existsByUserAndPetition(currentUser, petition)) {

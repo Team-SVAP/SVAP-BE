@@ -26,4 +26,5 @@ public interface PetitionRepository extends JpaRepository<Petition, Long>, Petit
     //인기 청원 보기
     Optional<Petition> findTopByOrderByViewCountsDesc();
 
+    Optional<Petition> findPetitionById(Long id);
 }
