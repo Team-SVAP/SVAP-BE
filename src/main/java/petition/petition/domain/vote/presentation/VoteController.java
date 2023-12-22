@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import petition.petition.domain.vote.service.ClickVoteService;
 
-@Service
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/svap/vote")
 public class VoteController {
