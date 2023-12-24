@@ -21,7 +21,7 @@ public class ChangeAccessTypeService {
     private final PetitionRepository petitionRepository;
     private final UserFacade userFacade;
 
-    public void changeAccessTypeService(AccessTypes accessTypes, Long petitionId) {
+    public void changeAccessType(AccessTypes accessTypes, Long petitionId) {
 
         User currentUser = userFacade.getCurrentUser();
 

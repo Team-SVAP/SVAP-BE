@@ -77,7 +77,7 @@ public class PetitionController {
 
     @PatchMapping("/access_types/{petition-id}")
     public void changeAccessType(@RequestParam(value = "access_types") AccessTypes accessTypes, @PathVariable("petition-id") Long id) {
-        changeAccessTypeService.changeAccessTypeService(accessTypes, id);
+        changeAccessTypeService.changeAccessType(accessTypes, id);
     }
 
 }

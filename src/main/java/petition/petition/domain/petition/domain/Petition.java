@@ -65,6 +65,7 @@ public class Petition {
     public void addViewCount() {
         this.viewCounts++;
     }
+
     public void changeAccessType(AccessTypes accessTypes) {
         this.accessTypes = accessTypes;
     }
