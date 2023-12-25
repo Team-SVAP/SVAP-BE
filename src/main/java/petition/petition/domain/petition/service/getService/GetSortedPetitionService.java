@@ -34,8 +34,7 @@ public class GetSortedPetitionService {
                     .stream()
                     .map(PetitionListResponse::new)
                     .toList();
-        }
-        else {
+        } else {
             return petitionRepository.queryPetitionByTypesAndAccessTypes(types, accessTypes)
                     .stream()
                     .map(PetitionListResponse::new)

@@ -12,7 +12,6 @@ import petition.petition.domain.user.facade.UserFacade;
 import petition.petition.domain.vote.domain.Vote;
 import petition.petition.domain.vote.domain.repository.VoteRepository;
 
-
 @Service
 @RequiredArgsConstructor
 @Transactional
