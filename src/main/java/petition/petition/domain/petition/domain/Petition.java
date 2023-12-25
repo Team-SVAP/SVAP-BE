@@ -82,4 +82,5 @@ public class Petition {
     public void minusVoteCount()  {
         this.voteCounts--;
     }
+    
 }
