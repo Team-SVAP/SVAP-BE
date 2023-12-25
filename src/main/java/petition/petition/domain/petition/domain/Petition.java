@@ -57,7 +57,7 @@ public class Petition {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "petition", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "petition", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "vote_id")
     private List<Vote> voteList = new ArrayList<>();
 
@@ -82,5 +82,5 @@ public class Petition {
     public void minusVoteCount()  {
         this.voteCounts--;
     }
-    
+
 }
