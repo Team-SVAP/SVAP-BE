@@ -27,4 +27,7 @@ public interface PetitionRepository extends JpaRepository<Petition, Long>, Petit
     Optional<Petition> findTopByOrderByViewCountsDesc();
 
     Optional<Petition> findPetitionById(Long id);
+
+    void deletePetitionById(Long id);
+
 }

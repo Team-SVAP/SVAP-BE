@@ -20,7 +20,7 @@ public class UnBanService {
     private final UserFacade userFacade;
     private final BanRepository banRepository;
 
-    public void unBan(Long banId) {
+    public void unBan(Long id) {
 
         User currentUser = userFacade.getCurrentUser();
 
@@ -28,10 +28,10 @@ public class UnBanService {
             throw NotAdminException.EXCEPTION;
         }
 
-        Ban ban = banRepository.findById(banId)
+        banRepository.findById(id)
                 .orElseThrow(() -> BanNotFoundException.EXCEPTION);
 
-        banRepository.delete(ban);
+        banRepository.deleteBanById(id);
     }
 
 }
