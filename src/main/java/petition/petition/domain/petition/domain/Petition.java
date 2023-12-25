@@ -1,9 +1,11 @@
 package petition.petition.domain.petition.domain;
 
 import lombok.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWarDeployment;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.user.domain.User;
+import petition.petition.domain.vote.domain.Vote;
 import petition.petition.infra.StringListConverter;
 
 import javax.persistence.*;
@@ -54,6 +56,10 @@ public class Petition {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "petition", cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "vote_id")
+    private List<Vote> voteList = new ArrayList<>();
 
     public void modifyPetition(String title, String content, Types types, String location) {
         this.title = title;

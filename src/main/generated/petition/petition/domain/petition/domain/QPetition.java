@@ -44,6 +44,8 @@ public class QPetition extends EntityPathBase<Petition> {
 
     public final NumberPath<Integer> voteCounts = createNumber("voteCounts", Integer.class);
 
+    public final ListPath<petition.petition.domain.vote.domain.Vote, petition.petition.domain.vote.domain.QVote> voteList = this.<petition.petition.domain.vote.domain.Vote, petition.petition.domain.vote.domain.QVote>createList("voteList", petition.petition.domain.vote.domain.Vote.class, petition.petition.domain.vote.domain.QVote.class, PathInits.DIRECT2);
+
     public QPetition(String variable) {
         this(Petition.class, forVariable(variable), INITS);
     }
