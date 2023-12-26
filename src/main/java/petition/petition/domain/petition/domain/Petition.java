@@ -4,6 +4,7 @@ import lombok.*;
 import petition.petition.domain.petition.domain.types.AccessTypes;
 import petition.petition.domain.petition.domain.types.Types;
 import petition.petition.domain.user.domain.User;
+import petition.petition.domain.vote.domain.Vote;
 import petition.petition.infra.StringListConverter;
 
 import javax.persistence.*;
@@ -55,6 +56,9 @@ public class Petition {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "petition", orphanRemoval = true)
+    private List<Vote> comment = new ArrayList<>();
+    
     public void modifyPetition(String title, String content, Types types, String location) {
         this.title = title;
         this.content = content;
