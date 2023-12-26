@@ -9,6 +9,7 @@ import petition.petition.domain.petition.exception.PetitionNotFoundException;
 import petition.petition.domain.user.domain.User;
 import petition.petition.domain.user.exception.WriterMisMatchedException;
 import petition.petition.domain.user.facade.UserFacade;
+import petition.petition.domain.vote.domain.Vote;
 
 import static petition.petition.domain.user.domain.type.Role.ADMIN;
 

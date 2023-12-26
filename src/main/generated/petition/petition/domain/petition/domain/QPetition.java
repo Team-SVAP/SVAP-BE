@@ -24,6 +24,8 @@ public class QPetition extends EntityPathBase<Petition> {
 
     public final EnumPath<petition.petition.domain.petition.domain.types.AccessTypes> accessTypes = createEnum("accessTypes", petition.petition.domain.petition.domain.types.AccessTypes.class);
 
+    public final ListPath<petition.petition.domain.vote.domain.Vote, petition.petition.domain.vote.domain.QVote> comment = this.<petition.petition.domain.vote.domain.Vote, petition.petition.domain.vote.domain.QVote>createList("comment", petition.petition.domain.vote.domain.Vote.class, petition.petition.domain.vote.domain.QVote.class, PathInits.DIRECT2);
+
     public final StringPath content = createString("content");
 
     public final DatePath<java.time.LocalDate> dateTime = createDate("dateTime", java.time.LocalDate.class);
