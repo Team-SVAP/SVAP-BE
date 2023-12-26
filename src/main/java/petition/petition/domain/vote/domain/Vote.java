@@ -1,6 +1,8 @@
 package petition.petition.domain.vote.domain;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import petition.petition.domain.petition.domain.Petition;
 import petition.petition.domain.user.domain.User;
 
@@ -22,6 +24,7 @@ public class Vote {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Petition petition;
 
 }

@@ -57,10 +57,6 @@ public class Petition {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "petition", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinColumn(name = "vote_id")
-    private List<Vote> voteList = new ArrayList<>();
-
     public void modifyPetition(String title, String content, Types types, String location) {
         this.title = title;
         this.content = content;

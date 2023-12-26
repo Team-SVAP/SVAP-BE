@@ -23,7 +23,7 @@ spring:
       max-request-size: 10MB
 
   redis:
-    host: redis.xquare.app
+    host: localhost
     port: 6379
 
 jwt:
