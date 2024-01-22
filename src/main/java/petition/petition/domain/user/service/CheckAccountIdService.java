@@ -14,9 +14,6 @@ public class CheckAccountIdService {
 
     public void checkAccountId(CheckAccountIdRequest request) {
 
-        if (userRepository.existsByAccountId(request.getAccountId())) {
-            throw AccountIdAlreadyExistsException.EXCEPTION;
-        }
 
     }
 
