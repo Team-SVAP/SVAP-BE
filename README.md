@@ -28,30 +28,28 @@ App3_Para1 ;
 #include <string.h>
 #include <signal.h>
 #include <time.h>
+#include <ctype.h>
 
 #define MAX_SW_BLOCKS 10
 #define MAX_PARAMS 3
 #define MAX_STR 256
 
-// S/W 블록 정보 구조체 정의
 struct swInfo {
-    char name[MAX_STR];            // S/W 블록 이름
-    char params[MAX_PARAMS][MAX_STR]; // 블록 파라미터
-    int paramCount;                // 파라미터 개수
-    int restartCount;              // 재기동 횟수
-    char lastRestartReason[MAX_STR]; // 마지막 재기동 사유
-    time_t lastRestartTime;        // 마지막 재기동 시간
+    char name[MAX_STR];            
+    char params[MAX_PARAMS][MAX_STR]; 
+    int paramCount;                
+    int restartCount;             
+    char lastRestartReason[MAX_STR]; 
+    time_t lastRestartTime;    
 };
 
-struct swInfo swBlocks[MAX_SW_BLOCKS]; // 블록 배열
-int swBlockCount = 0;                 // 블록 개수
+struct swInfo swBlocks[MAX_SW_BLOCKS];
+int swBlockCount = 0;          
 char *trim(char *str) {
     char *end;
 
-    // 좌측 공백 제거
     while (isspace((unsigned char)*str)) str++;
 
-    // 우측 공백 제거
     if (*str == '\0') return str;
     end = str + strlen(str) - 1;
     while (end > str && isspace((unsigned char)*end)) end--;
@@ -70,14 +68,11 @@ void readFileList(const char *filePath) {
     while (fgets(line, sizeof(line), fp)) {
         if (swBlockCount >= MAX_SW_BLOCKS) break;
 
-        // ";"로 구분하여 파싱
         char *token = strtok(line, ";");
         if (!token) continue;
 
-        // 블록 이름 저장
         strcpy(swBlocks[swBlockCount].name, trim(token));
 
-        // 파라미터 저장
         int paramIndex = 0;
         while ((token = strtok(NULL, ";")) && paramIndex < MAX_PARAMS) {
             strcpy(swBlocks[swBlockCount].params[paramIndex++], trim(token));
@@ -100,7 +95,6 @@ void restartSwBlock(int blockIndex, const char *reason) {
     block->lastRestartTime = time(NULL);
     strcpy(block->lastRestartReason, reason);
 
-    // 로그 기록
     FILE *logFile = fopen("./log/restart.txt", "a");
     if (logFile) {
         fprintf(logFile, "S/W Name: %s, Time: %s, Reason: %s, Restart Count: %d\n",
@@ -126,7 +120,7 @@ void printRestartInfo() {
 }
 void signalHandler(int signal) {
     for (int i = 0; i < swBlockCount; i++) {
-        if (strcmp(swBlocks[i].name, "SwBlock2") == 0) { // 테스트용 블록
+        if (strcmp(swBlocks[i].name, "SwBlock2") == 0) {
             restartSwBlock(i, "Signal(SIGTERM)");
             break;
         }
@@ -137,23 +131,16 @@ void setupSignalHandler() {
     signal(SIGTERM, signalHandler);
 }
 int main() {
-    // 로그 디렉터리 생성
     system("mkdir -p ./log");
 
-    // S/W 블록 초기화
     readFileList("./FileList");
 
-    // Signal 처리 설정
     setupSignalHandler();
 
-    // 테스트용: 블록 재초기화
     restartSwBlock(0, "Init.");
     restartSwBlock(1, "Exit(5)");
 
-    // 기동 정보 출력
     printRestartInfo();
 
     return 0;
 }
-
-
